@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Template JGA</title>
+            </f:facet>
+            
+            <!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="styles/modele.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="styles/KardexCss.css" media="all" />
+            
+            
+        </h:head>
+
+        <h:body>
+
+           <div id="global">
+
+                <!-- entete -->
+                <div id="entete">
+                        <h1>
+                                <img alt="Logo JGAvation" height="50px" width ="100px" src="styles/img/logoJGA.png" />
+                                <span>JGAviation</span>
+                                
+                        </h1>
+
+                </div>
+
+                <!-- centre -->
+                <div id="centre">
+
+                        <!-- Menu latéral -->
+                        <div id="navigation">
+                                <ul>
+                                        <li><a href="main.xhtml">Accueil</a></li>
+                                        <li><a href="kardex.xhtml">KARDEX</a></li>
+                                        <li><a href="gestionStock.html">Gestion des Stocks</a></li>
+                                        <li><a href="client.html">Client</a></li>
+                                        <li><a href="ajoutMarque.html">AjoutMarque</a></li>
+                                </ul>
+                        </div>
+
+                        <div id="principal">
+                            <ui:insert name="myspecialcontent"></ui:insert>
+                        </div>
+
+                        <!-- secondaire -->
+                        <div id="secondaire">
+
+
+                                <h3 id="titreBulle">
+                                <img alt="Logo JGAvation" height="30px" width ="30px" src="styles/img/AmpouleIcone.ico" />
+                                        <span> InfoBulle</span>
+                                </h3>
+                                <p>Accueil de JGAviation</p>
+
+                        </div>
+
+                </div>
+
+        </div>
+
+        </h:body>
+
+    </f:view>
+</html>
+

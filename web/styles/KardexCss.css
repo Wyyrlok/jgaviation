@@ -1,0 +1,32 @@
+/* 
+    Document   : KardexCss
+    Created on : 10 déc. 2013, 08:55:34
+    Author     : Valentin
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+
+
+#tblAjoutAvion{
+    margin:auto;    
+}
+#tblAjoutAvion{
+    text-align: left;
+}
+
+
+#tblAjoutAvion th{
+    width:  200px;
+    height: 40px;
+    text-align: left;
+}
+
+
+#cmdAjout{
+    text-align: center;
+}

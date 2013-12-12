@@ -1,0 +1,104 @@
+/* Général */
+body {
+	color: #FFFFFF;
+	background: #46A6D7;
+}
+
+/* Navigation */
+#navigation {
+	background: #071871;
+}
+#navigation a {
+	color: #FF6533;
+}
+#navigation a:hover, #navigation a:focus {
+	background: #000000;
+}
+.sousMenu{
+    margin-left: 10px;
+}
+
+/* Contenu principal */
+#principal {
+	color: #181A12;
+	background: #7080D7;
+}
+
+/* Contenu secondaire */
+#secondaire {
+	background: #071871;
+}
+
+
+/* --- POSITIONNEMENT --- */
+
+/* Page */
+body {
+	padding: 20px 30px;
+}
+
+/* En-t�te */
+#entete {
+	padding: 20px 0;
+}
+#entete h1 {
+	margin: 0;
+}
+#entete h1 img {
+	float: left;
+	margin: 7px 20px 10px 0;
+}
+
+
+/* Bloc central */
+#centre {
+	position: relative; 
+	width: 100%;
+}
+
+/* Menu de navigation */
+#navigation {
+	position: absolute; 
+	top: 0;
+	left: 0;
+	width: 180px;
+}
+#navigation ul {
+	margin: 0;
+	padding: 20px 10px 20px 10px;
+	list-style: none;
+}
+#navigation a {
+	display: block;
+	height: 1%;
+	padding: 6px 10px 6px 10px;
+	line-height: 1.5;
+	font-size: .9em;
+	text-decoration: none;
+}
+
+/* Contenu principal */
+#principal {
+	margin-left: 200px; 
+	margin-right: 240px; 
+	padding: 10px 20px;
+}
+#principal > :first-child {
+	margin-top: 10px;
+}
+
+
+/* Contenu secondaire */
+#secondaire {
+	position: absolute; 
+	top: 0;
+	right: 0;
+	width: 180px;
+	padding: 12px 20px;
+}
+
+
+
+
+
+

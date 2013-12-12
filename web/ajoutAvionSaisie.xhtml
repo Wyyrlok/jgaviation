@@ -1,0 +1,166 @@
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <head>
+
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>Template JGA</title>
+        </f:facet>
+
+    </head>
+    <body>
+        <ui:composition template="mainTemplate.xhtml">
+            <ui:define name="myspecialcontent">
+                <title> Ajout Avion - Kardex</title>
+                <h:form>
+
+                    <p:fieldset legend="Avion">
+                        <h:panelGrid columns="9" cellpadding="10">  
+                            <table>
+                                <tr>
+                                    <th> 
+                                        <h:outputText value="Marque :"/> 
+                                    </th> 
+                                    <th> 
+                                        <p:inputText id="marqueAvion"/> 
+                                    </th>
+
+                                    <th> 
+                                        <h:outputText value="Type :"/> 
+                                    </th> 
+
+                                    <th> 
+                                        <p:inputText id="typeAvion"/>  
+                                    </th> 
+
+                                    <th> 
+                                        <h:outputText value="Immatriculation :"/> 
+                                    </th> 
+
+                                    <th> 
+                                        <p:inputText id="immatriculationAvion"/>
+                                    </th>
+                                </tr>
+
+                                <tr>
+
+                                    <td> 
+                                        <h:outputText value="SN :"/> 
+                                    </td> 
+                                    <td> 
+                                        <p:inputText id="snAvion"/> 
+                                    </td>
+
+                                    <td> 
+                                        <h:outputText value="Construction :"/> 
+                                    </td> 
+                                    <td> 
+                                        <p:inputMask id="constructionAvion" mask="99/99/9999"/> 
+                                    </td>
+
+                                    <td> 
+                                        <h:outputText value="Cycle :"/> 
+                                    </td> 
+
+                                    <td> 
+                                        <p:inputText id="cycleAvion"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                        </h:panelGrid>  
+                    </p:fieldset> 
+                    
+         
+                    
+                    <p:fieldset legend="Moteur">  
+                        <h:panelGrid columns="6" cellpadding="20">  
+                            <table id="tblAjoutAvion">
+                                <tr >
+
+                                    <th class="colMiddle"> 
+                                        <h:outputText value="Marque :"/> 
+                                    </th> 
+                                    <th class="colMiddle"> 
+                                        <p:inputText id="marqueMoteur"/> 
+                                    </th>
+
+                                    <th class="colMiddle"> 
+                                        <h:outputText value="Type :"/> 
+                                    </th> 
+
+                                    <th class="colMiddle"> 
+                                        <p:inputText id="typeMoteur"/>  
+                                    </th> 
+
+                                    <th class="colMiddle"> 
+                                        <h:outputText value="S/N :"/> 
+                                    </th> 
+
+                                    <th class="colMiddle"> 
+                                        <p:inputText id="snMoteur"/>
+                                    </th>
+                                </tr>
+
+                                <tr >
+
+                                    <th> 
+                                        <h:outputText value="Neuf :"/> 
+                                    </th> 
+                                    <th> 
+                                        <p:inputText id="neufMoteur"/> 
+                                    </th>
+
+                                    <th> 
+                                        <h:outputText value="RG :"/> 
+                                    </th> 
+                                    <th> 
+                                        <p:inputText id="rgMoteur"/>
+                                    </th>
+
+                                    <th class="colMiddle"> 
+                                        <h:outputText value="Heures :"/> 
+                                    </th> 
+
+                                    <th class="colMiddle"> 
+                                        <p:inputMask id="constructionAvion" mask="99/99/9999"/> 
+                                    </th>
+                                </tr>
+                                <tr> 
+                                     <th> 
+                                        <h:outputText value="Cycles :"/> 
+                                    </th> 
+                                    <th> 
+                                        <p:inputText id="rgMoteur"/>
+                                    </th>
+                                    
+                                    <th> 
+                                        <h:outputText value="Mois :"/> 
+                                    </th> 
+                                    <th> 
+                                        <p:inputText id="rgMoteur"/>
+                                    </th>
+                                </tr>
+                            </table>
+                        </h:panelGrid>  
+                    </p:fieldset> 
+
+                    <tr> 
+                        <th colspan="2" id="cmdAjout">  
+                            <input type="button" id="cmdAjoutAvion" value="Valider"/>  
+                        </th>  
+                    </tr>
+
+
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

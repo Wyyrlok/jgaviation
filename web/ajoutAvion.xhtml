@@ -1,0 +1,122 @@
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <head>
+
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>Ajout Avion</title>
+        </f:facet>
+
+        <!-- CSS -->
+        
+
+    </head>
+    <body>
+        <ui:composition template="mainTemplate.xhtml">
+            <ui:define name="myspecialcontent">
+                <title> Ajout Avion </title>
+
+                <p:fieldset legend="Ajout Avion">  
+                    <h:panelGrid columns="3" cellpadding="20">  
+                        <h:form>
+                            <table id="tblAjoutAvion">
+                                <tr >
+                                    <th rowspan="8" id="colImage">
+                                        <p:graphicImage value="/images/layout/avion_ajout.jpg" />
+                                    </th>
+                                    <th rowspan="8" witdh="50px"></th>
+
+                                    <th class="colMiddle"> 
+                                        <h:outputText value="Marque :"/> 
+                                    </th> 
+                                    <th> 
+                                        <p:inputText id="marqueAvion"/> 
+                                    </th> 
+                                </tr>
+
+                                <tr > 
+                                    <th> 
+                                        <h:outputText value="Modele :"/> 
+                                    </th> 
+                                    <th width="400px"> 
+                                        <p:inputText id="modeleAvion"/> 
+                                    </th> 
+                                </tr>
+
+                                <tr> 
+                                    <th> 
+                                        <h:outputText value="Construction :"/> 
+                                    </th> 
+                                    <th> 
+                                        <p:inputMask id="constructionAvion" mask="99/99/9999"/> 
+                                    </th>
+                                </tr>
+
+                                <tr> 
+                                    <th> 
+                                        <h:outputText value="Immatriculation :"/> 
+                                    </th> 
+                                    <th> 
+                                        <p:inputText id="immatriculationAvion"/> 
+                                    </th> 
+                                </tr>
+
+                                <tr> 
+                                    <th> 
+                                        <h:outputText value="Motorisation :"/>  
+                                    </th> 
+                                    <th>
+                                        <p:selectOneMenu value="motorisationAvion">  
+                                            <f:selectItem itemLabel="Mono Moteur" id="monoMoteur" />  
+                                            <f:selectItem itemLabel="Bi-Moteur" id="biMoteur" />  
+                                        </p:selectOneMenu> 
+                                    </th>
+                                </tr>
+
+                                <tr> 
+                                    <th> 
+                                        <h:outputText value="Type :"/> 
+                                    </th> 
+                                    <th>
+                                        <p:selectOneMenu value="materiauxAvion">  
+                                            <f:selectItem itemLabel="Bois et Toile" id="boisToile" />  
+                                            <f:selectItem itemLabel="Tube et toile" id="tubeToile" />
+                                            <f:selectItem itemLabel="Composite" id="composite" />
+                                            <f:selectItem itemLabel="Métallique" id="mettalique" />
+                                        </p:selectOneMenu>  
+                                    </th> 
+                                </tr> 
+
+                                <tr> 
+                                    <th> 
+                                        <h:outputText value="Propriétaire :"/> 
+                                    </th> 
+
+                                    <th> <p:selectOneMenu value="Propriétaire">  
+                                            <f:selectItem itemLabel="Mr Dupont" itemValue="mrdupont" />  
+                                            <f:selectItem itemLabel="Mr Richard" itemValue="mrRichard" />
+                                        </p:selectOneMenu>   
+                                    </th> 
+                                </tr>
+                                <tr> 
+                                    <th colspan="2" id="cmdAjout">  
+                                        <input type="button" id="cmdAjoutAvion" value="Valider"/>  
+                                    </th>  
+                                </tr>
+
+                            </table>
+
+                        </h:form>
+                    </h:panelGrid>  
+                </p:fieldset>  
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
