@@ -16,53 +16,61 @@
                         <h:panelGrid columns="12" cellpadding="10">  
                             <table id="saisieTbl">
                                 <tr>
-                                    <th> 
-                                        <h:outputText value="Marque :"/> 
-                                    </th> 
-                                    <th> 
-                                        <p:inputText id="marqueAvion"/> 
-                                    </th>
+                                    <td colspan="2"> 
+                                        <h:outputText value="Cellule"/> 
+                                    </td> 
+                                    <td colspan="2">
+                                        <h:outputText value="Helice"/> 
+                                    </td>
 
-                                    <th> 
-                                        <h:outputText value="Type :"/> 
-                                    </th> 
+                                    <td colspan="2"> 
+                                       <h:outputText value="Moteur"/> 
+                                    </td> 
 
-                                    <th> 
-                                        <p:inputText id="typeAvion"/>  
-                                    </th> 
-
-                                    <th> 
-                                        <h:outputText value="Immatriculation :"/> 
-                                    </th> 
-
-                                    <th> 
-                                        <p:inputText id="immatriculationAvion"/>
-                                    </th>
                                 </tr>
 
                                 <tr>
-
-                                    <td> 
-                                        <h:outputText value="SN :"/> 
+                                    <td > 
+                                        <h:outputText value="Heures Totales"/> 
                                     </td> 
-                                    <td> 
-                                        <p:inputText id="snAvion"/> 
-                                    </td>
-
-                                    <td> 
-                                        <h:outputText value="Construction :"/> 
+                                    <td > 
+                                        <h:outputText value="Heures depuis VM"/> 
                                     </td> 
-                                    <td> 
-                                        <p:inputMask id="constructionAvion" mask="99/99/9999"/> 
+                                    <td > 
+                                        <h:outputText value="Heures Totales"/> 
                                     </td>
-
-                                    <td> 
-                                        <h:outputText value="Cycle :"/> 
+                                    <td > 
+                                        <h:outputText value="Heures depuis RG"/> 
                                     </td> 
-
-                                    <td> 
-                                        <p:inputText id="cycleAvion"/>
+                                    <td > 
+                                        <h:outputText value="Heures Totales"/> 
+                                    </td> 
+                                    <td > 
+                                        <h:outputText value="Heures depuis RG"/> 
+                                    </td> 
+                                  
+                                </tr>
+                                
+                                <tr>
+                                    <td > 
+                                        <p:inputText id="celulleHT"/> 
+                                    </td> 
+                                    <td > 
+                                        <p:inputText id="celulleHVM"/>
+                                    </td> 
+                                    <td > 
+                                        <p:inputText id="heliceHT"/> 
                                     </td>
+                                    <td > 
+                                        <p:inputText id="heliceRG"/> 
+                                    </td> 
+                                    <td > 
+                                        <p:inputText id="moteurHT"/>
+                                    </td> 
+                                    <td > 
+                                       <p:inputText id="liteurRG"/>
+                                    </td> 
+                                  
                                 </tr>
                             </table>
                             

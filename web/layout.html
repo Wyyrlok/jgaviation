@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <f:facet name="first">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <!-- Apple iOS and Android stuff (do not remove) -->
+        <meta name="apple-mobile-web-app-capable" content="no" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1" />
+        <title>JG Aviation</title>
+    </f:facet>
+
+    <!-- CSS -->
+    <!-- Required Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/mws.style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/icons/24x24.css" media="screen" />
+
+    <!-- Theme Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/mws.theme.css" media="screen" />
+
+    <!-- JavaScript Plugins -->
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+
+    <!-- Core Script -->
+    <script type="text/javascript" src="js/core/mws.js"></script>
+
+
+</h:head>  
+
+<h:body>
+
+	<!-- Header -->
+	<div id="mws-header" class="clearfix">
+    
+    	<!-- Logo Container -->
+    	<div id="mws-logo-container">
+        
+        	<!-- Logo Wrapper, images put within this wrapper will always be vertically centered -->
+        	<div id="mws-logo-wrap">
+            	<img src="images/logo.png" alt="JG Aviation" />
+			</div>
+        </div>
+        
+        <!-- User Tools (notifications, logout, profile, change password) -->
+        <div id="mws-user-tools" class="clearfix">
+            
+            <!-- User Information and functions section -->
+            <div id="mws-user-info" class="mws-inset">
+                <!-- Username and Functions -->
+                <div id="mws-user-functions">
+                    <div id="mws-username">
+                        Bonjour, Gilbert
+                    </div>
+                    <ul>
+                        <li><a href="connect.html">Se déconnecter</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Start Main Wrapper -->
+    <div id="mws-wrapper">
+    
+    	<!-- Necessary markup, do not remove -->
+		<div id="mws-sidebar-stitch"></div>
+		<div id="mws-sidebar-bg"></div>
+        
+        <!-- Sidebar Wrapper -->
+        <div id="mws-sidebar">
+            
+            <!-- Main Navigation -->
+            <div id="mws-navigation">
+            	<ul>
+                        <li><a href="main.xhtml">Accueil</a></li>
+                        <li><a href="kardex.xhtml">KARDEX</a></li>
+                        <li><a href="gestionStock.html">Gestion des Stocks</a></li>
+                        <li><a href="client.html">Client</a></li>
+                        <li><a href="ajoutMarque.html">AjoutMarque</a></li>
+                	<li class="active"><a href="layout.html" class="mws-i-24 i-home">Dashboard</a></li>
+                	<li><a href="charts.html" class="mws-i-24 i-chart">Charts</a></li>
+                	<li><a href="calendar.html" class="mws-i-24 i-day-calendar">Calendar</a></li>
+                	<li><a href="files.html" class="mws-i-24 i-file-cabinet">File Manager</a></li>
+                	<li><a href="table.html" class="mws-i-24 i-table-1">Table</a></li>
+                	<li>
+                    	<a href="#" class="mws-i-24 i-list">Forms</a>
+                        <ul>
+                        	<li><a href="form_layouts.html">Layouts</a></li>
+                        	<li><a href="form_elements.html">Elements</a></li>
+                        </ul>
+                    </li>
+                	<li><a href="widgets.html" class="mws-i-24 i-cog">Widgets</a></li>
+                	<li><a href="typography.html" class="mws-i-24 i-text-styling">Typography</a></li>
+                	<li><a href="grids.html" class="mws-i-24 i-blocks-images">Grids &amp; Panels</a></li>
+                	<li><a href="gallery.html" class="mws-i-24 i-polaroids">Gallery</a></li>
+                	<li><a href="error.html" class="mws-i-24 i-alert-2">Error Page</a></li>
+                	<li>
+                    	<a href="icons.html" class="mws-i-24 i-pacman">
+                        	Icons <span class="mws-nav-tooltip">2000+</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>            
+        </div>
+        
+        <!-- Main Container Start -->
+        <div id="mws-container" class="clearfix">
+        
+        	<!-- Inner Container Start -->
+            <div class="container">
+                <ui:insert name="myspecialcontent"></ui:insert>
+            </div>
+            <!-- Inner Container End -->
+                       
+            <!-- Footer -->
+            <div id="mws-footer">
+            	Copyright JG Aviation. All Rights Reserved.
+            </div>
+            
+        </div>
+        <!-- Main Container End -->
+        
+    </div>
+
+</h:body>
+</html>

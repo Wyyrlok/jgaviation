@@ -1,3 +1,4 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html 
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
@@ -5,23 +6,15 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 
-    <head>
-
-        <f:facet name="first">
-            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-            <title>Template JGA</title>
-        </f:facet>
-
-    </head>
-    <body>
-        <ui:composition template="mainTemplate.xhtml">
+        <ui:composition template="layout.html">
             <ui:define name="myspecialcontent">
-                <title> Ajout Avion - Kardex</title>
-                <h:form>
+                <p:fieldset legend="Ajout Avion">  
+                    <h:panelGrid columns="3" cellpadding="20">  
+                        <h:form>
 
                     <p:fieldset legend="Avion">
-                        <h:panelGrid columns="9" cellpadding="10">  
-                            <table>
+                        <h:panelGrid columns="12" cellpadding="10">  
+                            <table id="saisieTbl">
                                 <tr>
                                     <th> 
                                         <h:outputText value="Marque :"/> 
@@ -79,30 +72,30 @@
          
                     
                     <p:fieldset legend="Moteur">  
-                        <h:panelGrid columns="6" cellpadding="20">  
-                            <table id="tblAjoutAvion">
+                        <h:panelGrid columns="12" cellpadding="10">  
+                            <table id="saisieTbl">
                                 <tr >
 
-                                    <th class="colMiddle"> 
+                                    <th> 
                                         <h:outputText value="Marque :"/> 
                                     </th> 
-                                    <th class="colMiddle"> 
+                                    <th> 
                                         <p:inputText id="marqueMoteur"/> 
                                     </th>
 
-                                    <th class="colMiddle"> 
+                                    <th> 
                                         <h:outputText value="Type :"/> 
                                     </th> 
 
-                                    <th class="colMiddle"> 
+                                    <th> 
                                         <p:inputText id="typeMoteur"/>  
                                     </th> 
 
-                                    <th class="colMiddle"> 
-                                        <h:outputText value="S/N :"/> 
+                                    <th> 
+                                        <h:outputText value="S/N :           "/> 
                                     </th> 
 
-                                    <th class="colMiddle"> 
+                                    <th> 
                                         <p:inputText id="snMoteur"/>
                                     </th>
                                 </tr>
@@ -113,7 +106,7 @@
                                         <h:outputText value="Neuf :"/> 
                                     </th> 
                                     <th> 
-                                        <p:inputText id="neufMoteur"/> 
+                                       <p:inputMask id="neufMoteur" mask="99/99/9999"/>
                                     </th>
 
                                     <th> 
@@ -123,12 +116,12 @@
                                         <p:inputText id="rgMoteur"/>
                                     </th>
 
-                                    <th class="colMiddle"> 
+                                    <th> 
                                         <h:outputText value="Heures :"/> 
                                     </th> 
 
-                                    <th class="colMiddle"> 
-                                        <p:inputMask id="constructionAvion" mask="99/99/9999"/> 
+                                    <th> 
+                                        <p:inputText id="heuresMoteur"/>
                                     </th>
                                 </tr>
                                 <tr> 
@@ -136,31 +129,113 @@
                                         <h:outputText value="Cycles :"/> 
                                     </th> 
                                     <th> 
-                                        <p:inputText id="rgMoteur"/>
+                                        <p:inputText id="cyclesMoteur"/>
                                     </th>
                                     
                                     <th> 
                                         <h:outputText value="Mois :"/> 
                                     </th> 
                                     <th> 
-                                        <p:inputText id="rgMoteur"/>
+                                        <p:inputText id="moisMoteur"/>
+                                    </th>
+                                    
+                                    <th rowspan="2"> 
+                                        
                                     </th>
                                 </tr>
                             </table>
                         </h:panelGrid>  
                     </p:fieldset> 
+                    
+                    <p:fieldset legend="Helice">  
+                        <h:panelGrid columns="12" cellpadding="10">  
+                            <table id="saisieTbl">
+                                <tr >
 
-                    <tr> 
-                        <th colspan="2" id="cmdAjout">  
-                            <input type="button" id="cmdAjoutAvion" value="Valider"/>  
-                        </th>  
-                    </tr>
+                                    <th> 
+                                        <h:outputText value="Marque :"/> 
+                                    </th> 
+                                    <th> 
+                                        <p:inputText id="marqueHelice"/> 
+                                    </th>
 
+                                    <th> 
+                                        <h:outputText value="Type :"/> 
+                                    </th> 
 
-                </h:form>
+                                    <th> 
+                                        <p:inputText id="typeHelice"/>  
+                                    </th> 
+
+                                    <th> 
+                                        <h:outputText value="S/N :"/> 
+                                    </th> 
+
+                                    <th> 
+                                        <p:inputText id="snHelice"/>
+                                    </th>
+                                </tr>
+
+                                <tr >
+
+                                    <th> 
+                                        <h:outputText value="Neuf :"/> 
+                                    </th> 
+                                    <th> 
+                                        <p:inputMask id="neufHelice" mask="99/99/9999"/>  
+                                    </th>
+
+                                    <th> 
+                                        <h:outputText value="RG :"/> 
+                                    </th> 
+                                    <th> 
+                                        <p:inputText id="rgHelice"/>
+                                    </th>
+
+                                    <th> 
+                                        <h:outputText value="Heures :"/> 
+                                    </th> 
+
+                                    <th> 
+                                        <p:inputText id="heuresHelice"/>
+                                    </th>
+                                </tr>
+                                <tr> 
+                                     <th> 
+                                        <h:outputText value="Cycles :"/> 
+                                    </th> 
+                                    <th> 
+                                        <p:inputText id="cyclesHelice"/>
+                                    </th>
+                                    
+                                    <th> 
+                                        <h:outputText value="Mois :"/> 
+                                    </th> 
+                                    <th> 
+                                        <p:inputText id="moisHelice"/>
+                                    </th>
+                                    
+                                    <th rowspan="2"> 
+                                        
+                                    </th>
+                                </tr>
+                            </table>
+                        </h:panelGrid>  
+                    </p:fieldset>
+                      
+                    <table> 
+                        <tr colspan="2" id="cmdAjout">  
+                            
+                            <form method="link" action="ajoutAvionHeureVol.xhtml"> <input id="cmdAjoutAvionHeureVol" type="submit" value="Passer à Heure de Vol"/></form>
+                        </tr>  
+                    </table>
+                            
+
+                        </h:form>
+                    </h:panelGrid>  
+                </p:fieldset>  
 
 
             </ui:define>
         </ui:composition>
-    </body>
 </html>
