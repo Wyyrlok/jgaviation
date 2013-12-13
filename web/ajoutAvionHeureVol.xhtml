@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+        <ui:composition template="layout.html">
+            <ui:define name="myspecialcontent">
+                <p:fieldset legend="Ajout Avion">  
+                    <h:panelGrid columns="3" cellpadding="20">  
+                        <h:form>
+
+                    <p:fieldset legend="Données de départ">
+                        <h:panelGrid columns="12" cellpadding="10">  
+                            <table id="saisieTbl">
+                                <tr>
+                                    <th> 
+                                        <h:outputText value="Marque :"/> 
+                                    </th> 
+                                    <th> 
+                                        <p:inputText id="marqueAvion"/> 
+                                    </th>
+
+                                    <th> 
+                                        <h:outputText value="Type :"/> 
+                                    </th> 
+
+                                    <th> 
+                                        <p:inputText id="typeAvion"/>  
+                                    </th> 
+
+                                    <th> 
+                                        <h:outputText value="Immatriculation :"/> 
+                                    </th> 
+
+                                    <th> 
+                                        <p:inputText id="immatriculationAvion"/>
+                                    </th>
+                                </tr>
+
+                                <tr>
+
+                                    <td> 
+                                        <h:outputText value="SN :"/> 
+                                    </td> 
+                                    <td> 
+                                        <p:inputText id="snAvion"/> 
+                                    </td>
+
+                                    <td> 
+                                        <h:outputText value="Construction :"/> 
+                                    </td> 
+                                    <td> 
+                                        <p:inputMask id="constructionAvion" mask="99/99/9999"/> 
+                                    </td>
+
+                                    <td> 
+                                        <h:outputText value="Cycle :"/> 
+                                    </td> 
+
+                                    <td> 
+                                        <p:inputText id="cycleAvion"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                        </h:panelGrid>  
+                    </p:fieldset> 
+                    
+         
+                  
+                            
+
+                        </h:form>
+                    </h:panelGrid>  
+                </p:fieldset>  
+
+
+            </ui:define>
+        </ui:composition>
+</html>
