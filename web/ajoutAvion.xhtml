@@ -13,87 +13,87 @@
                         <h:form>
                             <table id="tblAjoutAvion">
                                 <tr >
-                                    <th rowspan="8" id="colImage">
+                                    <td rowspan="8" id="colImage">
                                         <p:graphicImage value="/images/layout/avion_ajout.jpg" />
-                                    </th>
-                                    <th rowspan="8" witdh="50px"></th>
+                                    </td>
+                                    <td rowspan="8" witdh="50px"></td>
 
-                                    <th class="colMiddle"> 
+                                    <td class="colMiddle"> 
                                         <h:outputText value="Marque :"/> 
-                                    </th> 
-                                    <th> 
+                                    </td> 
+                                    <td> 
                                         <p:inputText id="marqueAvion"/> 
-                                    </th> 
+                                    </td> 
                                 </tr>
 
                                 <tr > 
-                                    <th> 
+                                    <td> 
                                         <h:outputText value="Modele :"/> 
-                                    </th> 
-                                    <th width="400px"> 
+                                    </td> 
+                                    <td width="400px"> 
                                         <p:inputText id="modeleAvion"/> 
-                                    </th> 
+                                    </td> 
                                 </tr>
 
                                 <tr> 
-                                    <th> 
+                                    <td> 
                                         <h:outputText value="Construction :"/> 
-                                    </th> 
-                                    <th> 
+                                    </td> 
+                                    <td> 
                                         <p:inputMask id="constructionAvion" mask="99/99/9999"/> 
-                                    </th>
+                                    </td>
                                 </tr>
 
                                 <tr> 
-                                    <th> 
+                                    <td> 
                                         <h:outputText value="Immatriculation :"/> 
-                                    </th> 
-                                    <th> 
+                                    </td> 
+                                    <td> 
                                         <p:inputText id="immatriculationAvion"/> 
-                                    </th> 
+                                    </td> 
                                 </tr>
 
                                 <tr> 
-                                    <th> 
+                                    <td> 
                                         <h:outputText value="Motorisation :"/>  
-                                    </th> 
-                                    <th>
-                                        <p:selectOneMenu value="motorisationAvion">  
+                                    </td> 
+                                    <td>
+                                        <h:selectOneMenu value="motorisationAvion">  
                                             <f:selectItem itemLabel="Mono Moteur" id="monoMoteur" />  
                                             <f:selectItem itemLabel="Bi-Moteur" id="biMoteur" />  
-                                        </p:selectOneMenu> 
-                                    </th>
+                                        </h:selectOneMenu> 
+                                    </td>
                                 </tr>
 
                                 <tr> 
-                                    <th> 
+                                    <td> 
                                         <h:outputText value="Matériaux :"/> 
-                                    </th> 
-                                    <th>
-                                        <p:selectOneMenu value="materiauxAvion">  
+                                    </td> 
+                                    <td>
+                                        <h:selectOneMenu value="materiauxAvion">  
                                             <f:selectItem itemLabel="Bois et Toile" id="boisToile" />  
                                             <f:selectItem itemLabel="Tube et toile" id="tubeToile" />
                                             <f:selectItem itemLabel="Composite" id="composite" />
                                             <f:selectItem itemLabel="Métallique" id="mettalique" />
-                                        </p:selectOneMenu>  
-                                    </th> 
+                                        </h:selectOneMenu>  
+                                    </td> 
                                 </tr> 
 
                                 <tr> 
-                                    <th> 
+                                    <td> 
                                         <h:outputText value="Propriétaire :"/> 
-                                    </th> 
+                                    </td> 
 
-                                    <th> <p:selectOneMenu value="Propriétaire">  
+                                    <td> <h:selectOneMenu value="Propriétaire">  
                                             <f:selectItem itemLabel="Mr Dupont" itemValue="mrdupont" />  
                                             <f:selectItem itemLabel="Mr Richard" itemValue="mrRichard" />
-                                        </p:selectOneMenu>   
-                                    </th> 
+                                        </h:selectOneMenu>   
+                                    </td> 
                                 </tr>
                                 <tr> 
-                                    <th colspan="2" id="cmdAjout">  
+                                    <td colspan="2" id="cmdAjout">  
                                         <input type="button" id="cmdAjoutAvion" value="Valider"/>  
-                                    </th>  
+                                    </td>  
                                 </tr>
 
                             </table>

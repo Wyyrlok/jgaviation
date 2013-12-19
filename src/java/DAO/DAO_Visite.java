@@ -86,7 +86,7 @@ public class DAO_Visite {
         
         return visite;
     }
-
+/*
     public Workorder READ(int id_wo)
     {
         Workorder workorder = new Workorder();
@@ -173,6 +173,6 @@ public class DAO_Visite {
         catch(Exception ex){System.err.println(ex.getMessage());}
         return ret;
     }
-    
+    */
 }
 
