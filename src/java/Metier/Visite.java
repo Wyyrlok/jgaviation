@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package Metier;
 
 import java.util.Date;
 
@@ -13,13 +13,13 @@ import java.util.Date;
 public class Visite {
     private int id_Visite;
     private String immat;
-    private Date saisie_heure;
-    private float saisie_date;
-    private float tol_date;
+    private float saisie_heure;
+    private Date saisie_date;
+    private Date tol_date;
     private float tol_heure;
-    private float der_date;
+    private Date der_date;
     private float der_heure;
-    private float id_maintenance;
+    private int id_maintenance;
 
     /**
      * @return the id_Visite
@@ -52,42 +52,42 @@ public class Visite {
     /**
      * @return the saisie_heure
      */
-    public Date getSaisie_heure() {
+    public float getSaisie_heure() {
         return saisie_heure;
     }
 
     /**
      * @param saisie_heure the saisie_heure to set
      */
-    public void setSaisie_heure(Date saisie_heure) {
+    public void setSaisie_heure(float saisie_heure) {
         this.saisie_heure = saisie_heure;
     }
 
     /**
      * @return the saisie_date
      */
-    public float getSaisie_date() {
+    public Date getSaisie_date() {
         return saisie_date;
     }
 
     /**
      * @param saisie_date the saisie_date to set
      */
-    public void setSaisie_date(float saisie_date) {
+    public void setSaisie_date(Date saisie_date) {
         this.saisie_date = saisie_date;
     }
 
     /**
      * @return the tol_date
      */
-    public float getTol_date() {
+    public Date getTol_date() {
         return tol_date;
     }
 
     /**
      * @param tol_date the tol_date to set
      */
-    public void setTol_date(float tol_date) {
+    public void setTol_date(Date tol_date) {
         this.tol_date = tol_date;
     }
 
@@ -108,14 +108,14 @@ public class Visite {
     /**
      * @return the der_date
      */
-    public float getDer_date() {
+    public Date getDer_date() {
         return der_date;
     }
 
     /**
      * @param der_date the der_date to set
      */
-    public void setDer_date(float der_date) {
+    public void setDer_date(Date der_date) {
         this.der_date = der_date;
     }
 
@@ -136,14 +136,14 @@ public class Visite {
     /**
      * @return the id_maintenance
      */
-    public float getId_maintenance() {
+    public int getId_maintenance() {
         return id_maintenance;
     }
 
     /**
      * @param id_maintenance the id_maintenance to set
      */
-    public void setId_maintenance(float id_maintenance) {
+    public void setId_maintenance(int id_maintenance) {
         this.id_maintenance = id_maintenance;
     }
 }
