@@ -35,12 +35,19 @@ public class DAO_CN_Cel {
             ps=con.prepareStatement(sql);
             
             ps.setInt(1, cn_cel.getId_Cn_Cel());
-            ps.setInt(2,v.getId_const());
-            ps.setString(3,cn_cel.getSerial_nb());
-            ps.setDate(4, (Date) cn_cel.getDate_const());
-            ps.setInt(5,cn_cel.getId_proprio());
-            ps.setInt(6,cn_cel.getId_type());
-            ps.setString(7,cn_cel.getType());
+            ps.setString(2,cn_cel.getImmat());
+            ps.setDate(3, (Date) cn_cel.getDate_ajt());
+            ps.setString(4,cn_cel.getReference());
+            ps.setString(5,cn_cel.getSB());
+            ps.setString(6,cn_cel.getObjet());
+            ps.setString(7,cn_cel.getApplicabilite());
+            ps.setFloat(8, cn_cel.getRep_i_m());
+            ps.setFloat(9, cn_cel.getRep_he());
+            ps.setFloat(10, cn_cel.getRep_cy());
+            ps.setDate(11, (Date) cn_cel.getExe_date());
+            ps.setFloat(12, cn_cel.getExe_he());
+            ps.setFloat(13, cn_cel.getExe_cy());
+            ps.setBoolean(14, cn_cel.isbAnnul());
             
             ret = ps.executeUpdate();
 
@@ -50,9 +57,9 @@ public class DAO_CN_Cel {
         return ret;
     }
     
-    public ArrayList<Aeronef> GET_ALL()
+    public ArrayList<CN_Cel> GET_ALL()
     {
-        ArrayList<Aeronef> aeronef = new ArrayList<Aeronef>();
+        ArrayList<CN_Cel> cn_cel = new ArrayList<CN_Cel>();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -61,34 +68,42 @@ public class DAO_CN_Cel {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM aeronef WHERE immat = ?";
+            String sql="SELECT * FROM cn_cel WHERE id_CN_Cel = ?";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);
             
             while(rs.next())
             {
-                Aeronef b = new Aeronef();
+                CN_Cel b = new CN_Cel();
+                b.setId_Cn_Cel(rs.getInt("id_CN_Cel"));
                 b.setImmat(rs.getString("immat"));
-                b.setId_const(rs.getInt("id_const"));
-                b.setSerial_nb(rs.getString("serial_nb"));
-                b.setDate_const(rs.getDate("date_const"));
-                b.setId_proprio(rs.getInt("id_proprio"));                
-                b.setType(rs.getString("type"));
+                b.setDate_ajt(rs.getDate("date_ajt"));
+                b.setReference(rs.getString("reference"));
+                b.setSB(rs.getString("SB"));                
+                b.setObjet(rs.getString("objet"));
+                b.setApplicabilite(rs.getString("applicabilite"));
+                b.setRep_i_m(rs.getFloat("rep_i_m"));
+                b.setRep_he(rs.getFloat("rep_he"));
+                b.setRep_cy(rs.getFloat("rep_cy"));
+                b.setExe_date(rs.getDate("exe_date"));
+                b.setExe_he(rs.getFloat("exe_he"));
+                b.setExe_cy(rs.getFloat("exe_cy"));
+                b.setbAnnul(rs.getBoolean("bAnnuel"));
                 
-                aeronef.add(b);
+                cn_cel.add(b);
             }
             
             con.close();
         }
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
-        return aeronef;
+        return cn_cel;
     }
 
-    public Aeronef READ(String immat)
+    public CN_Cel READ(int id_CN_Cel)
     {
-        Aeronef aeronef = new Aeronef();
+        CN_Cel cn_cel = new CN_Cel();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -97,21 +112,29 @@ public class DAO_CN_Cel {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM aeronef WHERE immat = ?";
+            String sql="SELECT * FROM cn_cel WHERE id_CN_Cel = ?";
             
             ps=con.prepareStatement(sql);
-            ps.setString(1,immat);
+            ps.setInt(1,id_CN_Cel);
             
             rs=ps.executeQuery(sql);
             
             while(rs.next())
             {
-                aeronef.setImmat(rs.getString("immat"));
-                aeronef.setId_const(rs.getInt("id_const"));
-                aeronef.setSerial_nb(rs.getString("serial_nb"));
-                aeronef.setDate_const(rs.getDate("date_const"));
-                aeronef.setId_proprio(rs.getInt("id_proprio"));                
-                aeronef.setType(rs.getString("type"));
+                cn_cel.setId_Cn_Cel(rs.getInt("id_CN_Cel"));
+                cn_cel.setImmat(rs.getString("immat"));
+                cn_cel.setDate_ajt(rs.getDate("date_ajt"));
+                cn_cel.setReference(rs.getString("reference"));
+                cn_cel.setSB(rs.getString("SB"));                
+                cn_cel.setObjet(rs.getString("objet"));
+                cn_cel.setApplicabilite(rs.getString("applicabilite"));
+                cn_cel.setRep_i_m(rs.getFloat("rep_i_m"));
+                cn_cel.setRep_he(rs.getFloat("rep_he"));
+                cn_cel.setRep_cy(rs.getFloat("rep_cy"));
+                cn_cel.setExe_date(rs.getDate("exe_date"));
+                cn_cel.setExe_he(rs.getFloat("exe_he"));
+                cn_cel.setExe_cy(rs.getFloat("exe_cy"));
+                cn_cel.setbAnnul(rs.getBoolean("bAnnuel"));
             }
             
             con.close();
@@ -119,10 +142,10 @@ public class DAO_CN_Cel {
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
         
-        return aeronef;
+        return cn_cel;
     }
     
-    public int UPDATE(Aeronef aeronef)
+    public int UPDATE(CN_Cel cn_cel)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -132,16 +155,23 @@ public class DAO_CN_Cel {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="UPDATE proprietaire SET immat=?, id_const=? ,serial_nb=? ,date_const=? ,id_proprio=? ,id_type=? ,type=?";
+            String sql="UPDATE cn_cel SET id_CN_Cel=?, immat=? ,date_ajt=? ,reference=? ,SB=? ,objet=? ,applicabilite? ,rep_i_m=? ,rep_he=? ,rep_cy=? ,exe_date=? ,exe_he=? ,exe_cy=? ,bAnnul=?";
             ps=con.prepareStatement(sql);
 
-            ps.setString(1,aeronef.getImmat());
-            ps.setInt(2,aeronef.getId_const());
-            ps.setString(3,aeronef.getSerial_nb());
-            ps.setDate(4, (Date) aeronef.getDate_const());
-            ps.setInt(5,aeronef.getId_proprio());
-            ps.setInt(6,aeronef.getId_type());
-            ps.setString(7,aeronef.getType());
+            ps.setInt(1, cn_cel.getId_Cn_Cel());
+            ps.setString(2,cn_cel.getImmat());
+            ps.setDate(3, (Date) cn_cel.getDate_ajt());
+            ps.setString(4,cn_cel.getReference());
+            ps.setString(5,cn_cel.getSB());
+            ps.setString(6,cn_cel.getObjet());
+            ps.setString(7,cn_cel.getApplicabilite());
+            ps.setFloat(8, cn_cel.getRep_i_m());
+            ps.setFloat(9, cn_cel.getRep_he());
+            ps.setFloat(10, cn_cel.getRep_cy());
+            ps.setDate(11, (Date) cn_cel.getExe_date());
+            ps.setFloat(12, cn_cel.getExe_he());
+            ps.setFloat(13, cn_cel.getExe_cy());
+            ps.setBoolean(14, cn_cel.isbAnnul());
             
             ret = ps.executeUpdate();
 
@@ -151,7 +181,7 @@ public class DAO_CN_Cel {
         return ret;
     }
     
-    public int DELETE(String immat)
+    public int DELETE(int id_CN_Cel)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -161,10 +191,10 @@ public class DAO_CN_Cel {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="DELETE aeronef WHERE immat=? ";
+            String sql="DELETE cn_cel WHERE id_CN_Cel=? ";
             ps=con.prepareStatement(sql);
 
-            ps.setString(1, immat);
+            ps.setInt(1, id_CN_Cel);
             
             ret = ps.executeUpdate();
 
@@ -177,4 +207,3 @@ public class DAO_CN_Cel {
 }
 
     
-}
