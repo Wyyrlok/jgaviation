@@ -4,9 +4,8 @@
  */
 package DAO;
 
-import Metier.Aeronef;
+import Metier.Article;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,9 +16,13 @@ import java.util.ArrayList;
  *
  * @author Valentin
  */
-public class DAO_Aeronef {
+public class DAO_Article {
+/**
+ *
+ * @author Valentin
+ */
     
-    public int CREATE(Aeronef aeronef) throws Exception
+    public int CREATE(Article article) throws Exception
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -29,16 +32,17 @@ public class DAO_Aeronef {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="insert into aeronef (immat,id_const,serial_nb,date_const,id_proprio,id_type,type) values (?,?,?,?,?,?,?)";
+            String sql="insert into article (id_article,designation,part_nb_const,id_const,prix_vte_art,bPeremption,bSerialNb,stock_mini) values (?,?,?,?,?,?,?,?)";
             ps=con.prepareStatement(sql);
 
-            ps.setString(1,aeronef.getImmat());
-            ps.setInt(2,aeronef.getId_const());
-            ps.setString(3,aeronef.getSerial_nb());
-            ps.setDate(4, (Date) aeronef.getDate_const());
-            ps.setInt(5,aeronef.getId_proprio());
-            ps.setInt(6,aeronef.getId_type());
-            ps.setString(7,aeronef.getType());
+            ps.setInt(1,article.getId_article());
+            ps.setString(2,article.getDesignation());
+            ps.setString(3,article.getPart_nb_const());
+            ps.setInt(4, article.getId_const());
+            ps.setFloat(5,article.getPrix_vte_article());
+            ps.setBoolean(6,article.isbPeremption());
+            ps.setBoolean(7,article.isbSerialNb());
+            ps.setInt(8, article.getStock_mini());
             
             ret = ps.executeUpdate();
 
@@ -48,9 +52,9 @@ public class DAO_Aeronef {
         return ret;
     }
     
-    public ArrayList<Aeronef> GET_ALL()
+    public ArrayList<Article> GET_ALL()
     {
-        ArrayList<Aeronef> aeronef = new ArrayList<Aeronef>();
+        ArrayList<Article> article = new ArrayList<Article>();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -59,34 +63,36 @@ public class DAO_Aeronef {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM aeronef WHERE immat = ?";
+            String sql="SELECT * FROM article WHERE id_article = ?";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);
             
             while(rs.next())
             {
-                Aeronef b = new Aeronef();
-                b.setImmat(rs.getString("immat"));
+                Article b = new Article();
+                b.setId_article(rs.getInt("id_article"));
+                b.setDesignation(rs.getString("designation"));
+                b.setPart_nb_const(rs.getString("part_nb_const"));
                 b.setId_const(rs.getInt("id_const"));
-                b.setSerial_nb(rs.getString("serial_nb"));
-                b.setDate_const(rs.getDate("date_const"));
-                b.setId_proprio(rs.getInt("id_proprio"));                
-                b.setType(rs.getString("type"));
+                b.setPrix_vte_article(rs.getInt("prix_vte_art"));                
+                b.setbPeremption(rs.getBoolean("bPeremption"));
+                b.setbSerialNb(rs.getBoolean("bSerialNb"));
+                b.setStock_mini(rs.getInt("stock_mini"));
                 
-                aeronef.add(b);
+                article.add(b);
             }
             
             con.close();
         }
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
-        return aeronef;
+        return article;
     }
 
-    public Aeronef READ(String immat)
+    public Article READ(String immat)
     {
-        Aeronef aeronef = new Aeronef();
+        Article article = new Article();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -95,7 +101,7 @@ public class DAO_Aeronef {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM aeronef WHERE immat = ?";
+            String sql="SELECT * FROM article WHERE id_article = ?";
             
             ps=con.prepareStatement(sql);
             ps.setString(1,immat);
@@ -104,12 +110,14 @@ public class DAO_Aeronef {
             
             while(rs.next())
             {
-                aeronef.setImmat(rs.getString("immat"));
-                aeronef.setId_const(rs.getInt("id_const"));
-                aeronef.setSerial_nb(rs.getString("serial_nb"));
-                aeronef.setDate_const(rs.getDate("date_const"));
-                aeronef.setId_proprio(rs.getInt("id_proprio"));                
-                aeronef.setType(rs.getString("type"));
+                article.setId_article(rs.getInt("id_article"));
+                article.setDesignation(rs.getString("designation"));
+                article.setPart_nb_const(rs.getString("part_nb_const"));
+                article.setId_const(rs.getInt("id_const"));
+                article.setPrix_vte_article(rs.getInt("prix_vte_art"));                
+                article.setbPeremption(rs.getBoolean("bPeremption"));
+                article.setbSerialNb(rs.getBoolean("bSerialNb"));
+                article.setStock_mini(rs.getInt("stock_mini"));
             }
             
             con.close();
@@ -117,10 +125,10 @@ public class DAO_Aeronef {
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
         
-        return aeronef;
+        return article;
     }
     
-    public int UPDATE(Aeronef aeronef)
+    public int UPDATE(Article article)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -130,16 +138,17 @@ public class DAO_Aeronef {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="UPDATE proprietaire SET immat=?, id_const=? ,serial_nb=? ,date_const=? ,id_proprio=? ,id_type=? ,type=?";
+            String sql="UPDATE article SET id_article=?, designation=? ,part_nb_const=? ,id_const=? ,prix_vte_art=? ,bPeremption=? ,bSerialNb=?, stock_mini=?";
             ps=con.prepareStatement(sql);
 
-            ps.setString(1,aeronef.getImmat());
-            ps.setInt(2,aeronef.getId_const());
-            ps.setString(3,aeronef.getSerial_nb());
-            ps.setDate(4, (Date) aeronef.getDate_const());
-            ps.setInt(5,aeronef.getId_proprio());
-            ps.setInt(6,aeronef.getId_type());
-            ps.setString(7,aeronef.getType());
+            ps.setInt(1,article.getId_article());
+            ps.setString(2,article.getDesignation());
+            ps.setString(3,article.getPart_nb_const());
+            ps.setInt(4, article.getId_const());
+            ps.setFloat(5,article.getPrix_vte_article());
+            ps.setBoolean(6,article.isbPeremption());
+            ps.setBoolean(7,article.isbSerialNb());
+            ps.setInt(8, article.getStock_mini());
             
             ret = ps.executeUpdate();
 
@@ -149,7 +158,7 @@ public class DAO_Aeronef {
         return ret;
     }
     
-    public int DELETE(String immat)
+    public int DELETE(int id_article)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -159,10 +168,10 @@ public class DAO_Aeronef {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="DELETE aeronef WHERE immat=? ";
+            String sql="DELETE article WHERE id_article=? ";
             ps=con.prepareStatement(sql);
 
-            ps.setString(1, immat);
+            ps.setInt(1, id_article);
             
             ret = ps.executeUpdate();
 
@@ -173,3 +182,5 @@ public class DAO_Aeronef {
     }
     
 }
+
+

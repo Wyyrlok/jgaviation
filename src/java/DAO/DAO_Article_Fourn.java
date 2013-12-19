@@ -4,9 +4,8 @@
  */
 package DAO;
 
-import Metier.Workorder;
+import Metier.Article_Fourn;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,11 +14,17 @@ import java.util.ArrayList;
 
 /**
  *
- * @author quent_000
+ * @author Valentin
  */
-public class DAO_Workorder {
+public class DAO_Article_Fourn {
     
-    public int CREATE(Workorder workorder) throws Exception
+
+/**
+ *
+ * @author Valentin
+ */
+    
+    public int CREATE(Article_Fourn article_fourn) throws Exception
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -29,15 +34,14 @@ public class DAO_Workorder {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="insert into workorder (Id_wo,immat,id_proprio,date_in,date_out,num_wo) values (?,?,?,?,?,?)";
+            String sql="insert into article_fourn (id_art,id_fourn,prix_ach_fourn,part_nb_fourn,code_ean) values (?,?,?,?,?)";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1,workorder.getId_wo());
-            ps.setString(2,workorder.getImmat());
-            ps.setInt(3,workorder.getId_proprio());
-            ps.setDate(4, (Date) workorder.getDate_in());
-            ps.setDate(5, (Date) workorder.getDate_out());
-            ps.setString(6,workorder.getNum_wo());
+            ps.setInt(1,article_fourn.getId_art());
+            ps.setInt(2,article_fourn.getId_fourn());
+            ps.setFloat(3,article_fourn.getPrix_ach_fourn());
+            ps.setString(4, article_fourn.getPart_nb_fourn());
+            ps.setString(5,article_fourn.getCode_aen());
             
             ret = ps.executeUpdate();
 
@@ -47,9 +51,9 @@ public class DAO_Workorder {
         return ret;
     }
     
-    public ArrayList<Workorder> GET_ALL()
+    public ArrayList<Article_Fourn> GET_ALL()
     {
-        ArrayList<Workorder> workorder = new ArrayList<Workorder>();
+        ArrayList<Article_Fourn> article = new ArrayList<Article_Fourn>();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -58,34 +62,33 @@ public class DAO_Workorder {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM workorder WHERE id_wo = ?";
+            String sql="SELECT * FROM article_fourn WHERE id_art = ?";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);
             
             while(rs.next())
             {
-                Workorder b = new Workorder();
-                b.setId_wo(rs.getInt("id_wo"));
-                b.setImmat(rs.getString("immat"));
-                b.setId_proprio(rs.getInt("id_proprio"));
-                b.setDate_in(rs.getDate("date_in"));
-                b.setDate_out(rs.getDate("date_out"));
-                b.setNum_wo(rs.getString("num_wo"));
+                Article_Fourn b = new Article_Fourn();
+                b.setId_art(rs.getInt("id_art"));
+                b.setId_fourn(rs.getInt("id_fourn"));
+                b.setPrix_ach_fourn(rs.getFloat("prix_ach_fourn"));
+                b.setPart_nb_fourn(rs.getString("part_nb_fourn"));
+                b.setCode_aen(rs.getString("code_ean"));               
                 
-                workorder.add(b);
+                article.add(b);
             }
             
             con.close();
         }
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
-        return workorder;
+        return article;
     }
 
-    public Workorder READ(int id_wo)
+    public Article_Fourn READ(String immat)
     {
-        Workorder workorder = new Workorder();
+        Article_Fourn article_fourn = new Article_Fourn();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -94,21 +97,20 @@ public class DAO_Workorder {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM workorder WHERE id_wo = ?";
+            String sql="SELECT * FROM _fourn WHERE id_art = ?";
             
             ps=con.prepareStatement(sql);
-            ps.setInt(1,id_wo);
+            ps.setString(1,immat);
             
             rs=ps.executeQuery(sql);
             
             while(rs.next())
             {
-                workorder.setId_wo(rs.getInt("id_wo"));
-                workorder.setImmat(rs.getString("immat"));
-                workorder.setId_proprio(rs.getInt("id_proprio"));
-                workorder.setDate_in(rs.getDate("date_in"));
-                workorder.setDate_out(rs.getDate("date_out"));
-                workorder.setNum_wo(rs.getString("num_wo"));
+                article_fourn.setId_art(rs.getInt("id_art"));
+                article_fourn.setId_fourn(rs.getInt("id_fourn"));
+                article_fourn.setPrix_ach_fourn(rs.getFloat("prix_ach_fourn"));
+                article_fourn.setPart_nb_fourn(rs.getString("part_nb_fourn"));
+                article_fourn.setCode_aen(rs.getString("code_ean"));  
             }
             
             con.close();
@@ -116,10 +118,10 @@ public class DAO_Workorder {
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
         
-        return workorder;
+        return article_fourn;
     }
     
-    public int UPDATE(Workorder workorder)
+    public int UPDATE(Article_Fourn article_fourn)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -129,15 +131,14 @@ public class DAO_Workorder {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="UPDATE workorder SET id_wo=?, immat=? ,id_proprio=? ,date_in=? ,date_out=? ,num_wo=?";
+            String sql="UPDATE article_fourn SET id_art=?, id_fourn=? ,prix_ach_fourn=? ,prix_nb_fourn=? ,code_ean=?";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1,workorder.getId_wo());
-            ps.setString(2,workorder.getImmat());
-            ps.setInt(3,workorder.getId_proprio());
-            ps.setDate(4, (Date) workorder.getDate_in());
-            ps.setDate(5, (Date) workorder.getDate_out());
-            ps.setString(6,workorder.getNum_wo());
+            ps.setInt(1,article_fourn.getId_art());
+            ps.setInt(2,article_fourn.getId_fourn());
+            ps.setFloat(3,article_fourn.getPrix_ach_fourn());
+            ps.setString(4, article_fourn.getPart_nb_fourn());
+            ps.setString(5,article_fourn.getCode_aen());
             
             ret = ps.executeUpdate();
 
@@ -147,7 +148,7 @@ public class DAO_Workorder {
         return ret;
     }
     
-    public int DELETE(int id_wo)
+    public int DELETE(int id_art)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -157,10 +158,10 @@ public class DAO_Workorder {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="DELETE workorder WHERE id_wo=? ";
+            String sql="DELETE article_fourn WHERE id_art=? ";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1, id_wo);
+            ps.setInt(1, id_art);
             
             ret = ps.executeUpdate();
 

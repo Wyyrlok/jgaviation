@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import Metier.Workorder;
+import Metier.CN_Cel;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -15,11 +15,13 @@ import java.util.ArrayList;
 
 /**
  *
- * @author quent_000
+ * @author Valentin
  */
-public class DAO_Workorder {
+public class DAO_CN_Cel {
     
-    public int CREATE(Workorder workorder) throws Exception
+
+    
+    public int CREATE(CN_Cel cn_cel) throws Exception
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -29,15 +31,16 @@ public class DAO_Workorder {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="insert into workorder (Id_wo,immat,id_proprio,date_in,date_out,num_wo) values (?,?,?,?,?,?)";
+            String sql="insert into cn_cel (id_CN_Cel,immat,date_ajt,reference,SB,objet,applicabilite,rep_i_m,rep_he,rep_cy,exe_date,exe_he,exe_cy,bAnnul) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             ps=con.prepareStatement(sql);
-
-            ps.setInt(1,workorder.getId_wo());
-            ps.setString(2,workorder.getImmat());
-            ps.setInt(3,workorder.getId_proprio());
-            ps.setDate(4, (Date) workorder.getDate_in());
-            ps.setDate(5, (Date) workorder.getDate_out());
-            ps.setString(6,workorder.getNum_wo());
+            
+            ps.setInt(1, cn_cel.getId_Cn_Cel());
+            ps.setInt(2,v.getId_const());
+            ps.setString(3,cn_cel.getSerial_nb());
+            ps.setDate(4, (Date) cn_cel.getDate_const());
+            ps.setInt(5,cn_cel.getId_proprio());
+            ps.setInt(6,cn_cel.getId_type());
+            ps.setString(7,cn_cel.getType());
             
             ret = ps.executeUpdate();
 
@@ -47,9 +50,9 @@ public class DAO_Workorder {
         return ret;
     }
     
-    public ArrayList<Workorder> GET_ALL()
+    public ArrayList<Aeronef> GET_ALL()
     {
-        ArrayList<Workorder> workorder = new ArrayList<Workorder>();
+        ArrayList<Aeronef> aeronef = new ArrayList<Aeronef>();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -58,34 +61,34 @@ public class DAO_Workorder {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM workorder WHERE id_wo = ?";
+            String sql="SELECT * FROM aeronef WHERE immat = ?";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);
             
             while(rs.next())
             {
-                Workorder b = new Workorder();
-                b.setId_wo(rs.getInt("id_wo"));
+                Aeronef b = new Aeronef();
                 b.setImmat(rs.getString("immat"));
-                b.setId_proprio(rs.getInt("id_proprio"));
-                b.setDate_in(rs.getDate("date_in"));
-                b.setDate_out(rs.getDate("date_out"));
-                b.setNum_wo(rs.getString("num_wo"));
+                b.setId_const(rs.getInt("id_const"));
+                b.setSerial_nb(rs.getString("serial_nb"));
+                b.setDate_const(rs.getDate("date_const"));
+                b.setId_proprio(rs.getInt("id_proprio"));                
+                b.setType(rs.getString("type"));
                 
-                workorder.add(b);
+                aeronef.add(b);
             }
             
             con.close();
         }
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
-        return workorder;
+        return aeronef;
     }
 
-    public Workorder READ(int id_wo)
+    public Aeronef READ(String immat)
     {
-        Workorder workorder = new Workorder();
+        Aeronef aeronef = new Aeronef();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -94,21 +97,21 @@ public class DAO_Workorder {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM workorder WHERE id_wo = ?";
+            String sql="SELECT * FROM aeronef WHERE immat = ?";
             
             ps=con.prepareStatement(sql);
-            ps.setInt(1,id_wo);
+            ps.setString(1,immat);
             
             rs=ps.executeQuery(sql);
             
             while(rs.next())
             {
-                workorder.setId_wo(rs.getInt("id_wo"));
-                workorder.setImmat(rs.getString("immat"));
-                workorder.setId_proprio(rs.getInt("id_proprio"));
-                workorder.setDate_in(rs.getDate("date_in"));
-                workorder.setDate_out(rs.getDate("date_out"));
-                workorder.setNum_wo(rs.getString("num_wo"));
+                aeronef.setImmat(rs.getString("immat"));
+                aeronef.setId_const(rs.getInt("id_const"));
+                aeronef.setSerial_nb(rs.getString("serial_nb"));
+                aeronef.setDate_const(rs.getDate("date_const"));
+                aeronef.setId_proprio(rs.getInt("id_proprio"));                
+                aeronef.setType(rs.getString("type"));
             }
             
             con.close();
@@ -116,10 +119,10 @@ public class DAO_Workorder {
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
         
-        return workorder;
+        return aeronef;
     }
     
-    public int UPDATE(Workorder workorder)
+    public int UPDATE(Aeronef aeronef)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -129,15 +132,16 @@ public class DAO_Workorder {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="UPDATE workorder SET id_wo=?, immat=? ,id_proprio=? ,date_in=? ,date_out=? ,num_wo=?";
+            String sql="UPDATE proprietaire SET immat=?, id_const=? ,serial_nb=? ,date_const=? ,id_proprio=? ,id_type=? ,type=?";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1,workorder.getId_wo());
-            ps.setString(2,workorder.getImmat());
-            ps.setInt(3,workorder.getId_proprio());
-            ps.setDate(4, (Date) workorder.getDate_in());
-            ps.setDate(5, (Date) workorder.getDate_out());
-            ps.setString(6,workorder.getNum_wo());
+            ps.setString(1,aeronef.getImmat());
+            ps.setInt(2,aeronef.getId_const());
+            ps.setString(3,aeronef.getSerial_nb());
+            ps.setDate(4, (Date) aeronef.getDate_const());
+            ps.setInt(5,aeronef.getId_proprio());
+            ps.setInt(6,aeronef.getId_type());
+            ps.setString(7,aeronef.getType());
             
             ret = ps.executeUpdate();
 
@@ -147,7 +151,7 @@ public class DAO_Workorder {
         return ret;
     }
     
-    public int DELETE(int id_wo)
+    public int DELETE(String immat)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -157,10 +161,10 @@ public class DAO_Workorder {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="DELETE workorder WHERE id_wo=? ";
+            String sql="DELETE aeronef WHERE immat=? ";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1, id_wo);
+            ps.setString(1, immat);
             
             ret = ps.executeUpdate();
 
@@ -169,5 +173,8 @@ public class DAO_Workorder {
         catch(Exception ex){System.err.println(ex.getMessage());}
         return ret;
     }
+    
+}
+
     
 }
