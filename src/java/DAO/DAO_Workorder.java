@@ -29,7 +29,7 @@ public class DAO_Workorder {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="insert into workorder (Id_wo,immat,id_proprio,date_in,date_out,num_wo) values (?,?,?,?,?,?)";
+            String sql="insert into workorder (id_wo,immat,id_proprio,date_in,date_out,num_wo) values (?,?,?,?,?,?)";
             ps=con.prepareStatement(sql);
 
             ps.setInt(1,workorder.getId_wo());
