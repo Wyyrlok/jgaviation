@@ -157,7 +157,7 @@ public class DAO_CN_Equipement {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="UPDATE cn_cel SET id_CN_Equipement=?, immat=? ,date_ajt=? ,reference=? ,SB=? ,objet=? ,applicabilite? ,rep_i_m=? ,rep_he=? ,rep_cy=? ,exe_date=? ,exe_he=? ,exe_cy=? ,bAnnul=?";
+            String sql="UPDATE cn_equipement SET id_CN_Equipement=?, immat=? ,date_ajt=? ,reference=? ,SB=? ,objet=? ,applicabilite? ,rep_i_m=? ,rep_he=? ,rep_cy=? ,exe_date=? ,exe_he=? ,exe_cy=? ,bAnnul=?";
             ps=con.prepareStatement(sql);
 
             ps.setInt(1, cn_equip.getId_CN_Equipement());

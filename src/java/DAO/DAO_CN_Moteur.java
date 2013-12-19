@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import Metier.CN_Helice;
+import Metier.CN_Moteur;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -17,13 +17,11 @@ import java.util.ArrayList;
  *
  * @author Valentin
  */
-public class DAO_CN_Helice {
-    
+public class DAO_CN_Moteur {
+   
 
     
-
-    
-    public int CREATE(CN_Helice cn_helice) throws Exception
+    public int CREATE(CN_Moteur cn_moteur) throws Exception
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -36,20 +34,20 @@ public class DAO_CN_Helice {
             String sql="insert into cn_cel (id_CN_Helice,id_moteur,date_ajt,reference,SB,objet,applicabilite,rep_i_m,rep_he,rep_cy,exe_date,exe_he,exe_cy,bAnnul) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             ps=con.prepareStatement(sql);
             
-            ps.setInt(1, cn_helice.getId_CN_Helice());
-            ps.setString(2,cn_helice.getId_moteur());
-            ps.setDate(3, (Date) cn_helice.getDate_ajt());
-            ps.setString(4,cn_helice.getReference());
-            ps.setString(5,cn_helice.getSB());
-            ps.setString(6,cn_helice.getObjet());
-            ps.setString(7,cn_helice.getApplicabilite());
-            ps.setFloat(8, cn_helice.getRep_i_m());
-            ps.setFloat(9, cn_helice.getRep_he());
-            ps.setFloat(10, cn_helice.getRep_cy());
-            ps.setDate(11, (Date) cn_helice.getExe_date());
-            ps.setFloat(12, cn_helice.getExe_he());
-            ps.setFloat(13, cn_helice.getExe_cy());
-            ps.setBoolean(14, cn_helice.isbAnnul());
+            ps.setInt(1, cn_moteur.getId_CN_Moteur());
+            ps.setString(2,cn_moteur.getId_moteur());
+            ps.setDate(3, (Date) cn_moteur.getDate_ajt());
+            ps.setString(4,cn_moteur.getReference());
+            ps.setString(5,cn_moteur.getSB());
+            ps.setString(6,cn_moteur.getObjet());
+            ps.setString(7,cn_moteur.getApplicabilite());
+            ps.setFloat(8, cn_moteur.getRep_i_m());
+            ps.setFloat(9, cn_moteur.getRep_he());
+            ps.setFloat(10, cn_moteur.getRep_cy());
+            ps.setDate(11, (Date) cn_moteur.getExe_date());
+            ps.setFloat(12, cn_moteur.getExe_he());
+            ps.setFloat(13, cn_moteur.getExe_cy());
+            ps.setBoolean(14, cn_moteur.isbAnnul());
             
             ret = ps.executeUpdate();
 
@@ -59,9 +57,9 @@ public class DAO_CN_Helice {
         return ret;
     }
     
-    public ArrayList<CN_Helice> GET_ALL()
+    public ArrayList<CN_Moteur> GET_ALL()
     {
-        ArrayList<CN_Helice> cn_helice = new ArrayList<CN_Helice>();
+        ArrayList<CN_Moteur> cn_moteur = new ArrayList<CN_Moteur>();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -70,15 +68,15 @@ public class DAO_CN_Helice {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM cn_helice WHERE id_CN_Helice = ?";
+            String sql="SELECT * FROM cn_moteur WHERE id_CN_Moteur = ?";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);
             
             while(rs.next())
             {
-                CN_Helice b = new CN_Helice();
-                b.setId_CN_Helice(rs.getInt("id_CN_Helice"));
+                CN_Moteur b = new CN_Moteur();
+                b.setId_CN_Moteur(rs.getInt("id_CN_Moteur"));
                 b.setId_moteur(rs.getString("id_moteur"));
                 b.setDate_ajt(rs.getDate("date_ajt"));
                 b.setReference(rs.getString("reference"));
@@ -93,19 +91,19 @@ public class DAO_CN_Helice {
                 b.setExe_cy(rs.getFloat("exe_cy"));
                 b.setbAnnul(rs.getBoolean("bAnnuel"));
                 
-                cn_helice.add(b);
+                cn_moteur.add(b);
             }
             
             con.close();
         }
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
-        return cn_helice;
+        return cn_moteur;
     }
 
-    public CN_Helice READ(int id_CN_Helice)
+   public CN_Moteur READ(int id_CN_Moteur)
     {
-        CN_Helice cn_helice = new CN_Helice();
+        CN_Moteur cn_moteur = new CN_Moteur();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -114,29 +112,29 @@ public class DAO_CN_Helice {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM cn_helice WHERE id_CN_Helice = ?";
+            String sql="SELECT * FROM cn_moteur WHERE id_CN_Moteur = ?";
             
             ps=con.prepareStatement(sql);
-            ps.setInt(1,id_CN_Helice);
+            ps.setInt(1,id_CN_Moteur);
             
             rs=ps.executeQuery(sql);
             
             while(rs.next())
             {
-                cn_helice.setId_CN_Helice(rs.getInt("id_CN_Helice"));
-                cn_helice.setId_moteur(rs.getString("id_moteur"));
-                cn_helice.setDate_ajt(rs.getDate("date_ajt"));
-                cn_helice.setReference(rs.getString("reference"));
-                cn_helice.setSB(rs.getString("SB"));                
-                cn_helice.setObjet(rs.getString("objet"));
-                cn_helice.setApplicabilite(rs.getString("applicabilite"));
-                cn_helice.setRep_i_m(rs.getFloat("rep_i_m"));
-                cn_helice.setRep_he(rs.getFloat("rep_he"));
-                cn_helice.setRep_cy(rs.getFloat("rep_cy"));
-                cn_helice.setExe_date(rs.getDate("exe_date"));
-                cn_helice.setExe_he(rs.getFloat("exe_he"));
-                cn_helice.setExe_cy(rs.getFloat("exe_cy"));
-                cn_helice.setbAnnul(rs.getBoolean("bAnnuel"));
+                cn_moteur.setId_CN_Moteur(rs.getInt("id_CN_Moteur"));
+                cn_moteur.setId_moteur(rs.getString("id_moteur"));
+                cn_moteur.setDate_ajt(rs.getDate("date_ajt"));
+                cn_moteur.setReference(rs.getString("reference"));
+                cn_moteur.setSB(rs.getString("SB"));                
+                cn_moteur.setObjet(rs.getString("objet"));
+                cn_moteur.setApplicabilite(rs.getString("applicabilite"));
+                cn_moteur.setRep_i_m(rs.getFloat("rep_i_m"));
+                cn_moteur.setRep_he(rs.getFloat("rep_he"));
+                cn_moteur.setRep_cy(rs.getFloat("rep_cy"));
+                cn_moteur.setExe_date(rs.getDate("exe_date"));
+                cn_moteur.setExe_he(rs.getFloat("exe_he"));
+                cn_moteur.setExe_cy(rs.getFloat("exe_cy"));
+                cn_moteur.setbAnnul(rs.getBoolean("bAnnuel"));
             }
             
             con.close();
@@ -144,10 +142,10 @@ public class DAO_CN_Helice {
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
         
-        return cn_helice;
+        return cn_moteur;
     }
     
-    public int UPDATE(CN_Helice cn_helice)
+    public int UPDATE(CN_Moteur cn_moteur)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -157,23 +155,23 @@ public class DAO_CN_Helice {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="UPDATE cn_helice SET id_CN_Helice=?, id_moteur=? ,date_ajt=? ,reference=? ,SB=? ,objet=? ,applicabilite? ,rep_i_m=? ,rep_he=? ,rep_cy=? ,exe_date=? ,exe_he=? ,exe_cy=? ,bAnnul=?";
+            String sql="UPDATE cn_moteur SET id_CN_Moteur=?, id_moteur=? ,date_ajt=? ,reference=? ,SB=? ,objet=? ,applicabilite? ,rep_i_m=? ,rep_he=? ,rep_cy=? ,exe_date=? ,exe_he=? ,exe_cy=? ,bAnnul=?";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1, cn_helice.getId_CN_Helice());
-            ps.setString(2,cn_helice.getId_moteur());
-            ps.setDate(3, (Date) cn_helice.getDate_ajt());
-            ps.setString(4,cn_helice.getReference());
-            ps.setString(5,cn_helice.getSB());
-            ps.setString(6,cn_helice.getObjet());
-            ps.setString(7,cn_helice.getApplicabilite());
-            ps.setFloat(8, cn_helice.getRep_i_m());
-            ps.setFloat(9, cn_helice.getRep_he());
-            ps.setFloat(10, cn_helice.getRep_cy());
-            ps.setDate(11, (Date) cn_helice.getExe_date());
-            ps.setFloat(12, cn_helice.getExe_he());
-            ps.setFloat(13, cn_helice.getExe_cy());
-            ps.setBoolean(14, cn_helice.isbAnnul());
+            ps.setInt(1, cn_moteur.getId_CN_Moteur());
+            ps.setString(2,cn_moteur.getId_moteur());
+            ps.setDate(3, (Date) cn_moteur.getDate_ajt());
+            ps.setString(4,cn_moteur.getReference());
+            ps.setString(5,cn_moteur.getSB());
+            ps.setString(6,cn_moteur.getObjet());
+            ps.setString(7,cn_moteur.getApplicabilite());
+            ps.setFloat(8, cn_moteur.getRep_i_m());
+            ps.setFloat(9, cn_moteur.getRep_he());
+            ps.setFloat(10, cn_moteur.getRep_cy());
+            ps.setDate(11, (Date) cn_moteur.getExe_date());
+            ps.setFloat(12, cn_moteur.getExe_he());
+            ps.setFloat(13, cn_moteur.getExe_cy());
+            ps.setBoolean(14, cn_moteur.isbAnnul());
             
             ret = ps.executeUpdate();
 
@@ -183,7 +181,7 @@ public class DAO_CN_Helice {
         return ret;
     }
     
-    public int DELETE(int id_CN_Helice)
+    public int DELETE(int id_CN_Moteur)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -193,10 +191,10 @@ public class DAO_CN_Helice {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="DELETE cn_helice WHERE id_CN_Helice=? ";
+            String sql="DELETE cn_moteur WHERE id_CN_Moteur=? ";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1, id_CN_Helice);
+            ps.setInt(1, id_CN_Moteur);
             
             ret = ps.executeUpdate();
 
@@ -207,7 +205,4 @@ public class DAO_CN_Helice {
     }
     
 }
-
-    
-    
 
