@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="layout.html">
+        <ui:define name="myspecialcontent">
+                      
+            <p:panelGrid id="tabTop" style="float: top; margin-right: 40px; margin-left: 40px;">            
+                                <p:row>
+                                   
+                                    <p:column style="background-color: lightblue">Saisie</p:column> 
+                                    <p:column style="background-color: lightblue">Heure de Vol</p:column> 
+                                    <p:column style="background-color: white">Inventaire</p:column> 
+                                    <p:column style="background-color: lightblue">Visite</p:column> 
+                                    <p:column style="background-color: lightblue">CN Cellule</p:column> 
+                                    <p:column style="background-color: lightblue">CN Moteur</p:column>
+                                    <p:column style="background-color: lightblue">CN Helice</p:column>
+                                    <p:column style="background-color: lightblue">CN EQTS</p:column>
+                                    <p:column style="background-color: lightblue">PVL</p:column>
+                                    <p:column style="background-color: lightblue">Modif/Rep</p:column>
+                                    <p:column style="background-color: lightblue">CRS</p:column> 
+
+                                </p:row>  
+      
+                        </p:panelGrid>  
+                <br/><br/>
+
+
+                    <h:form>  
+                        <p:dataTable var="car" value="#{tableBean.cars}" scrollable="true"  scrollHeight="400" id="dataTable1">  
+
+                            <p:column headerText="F-GXY"  footerText=" ">  
+                                <h:outputText value="#{car.model}" />  
+                            </p:column>  
+
+                            <p:column headerText="Marque" footerText=" ">  
+                                <h:outputText value="#{car.manufacturer}" />  
+                            </p:column>  
+
+                            <p:column headerText="Type" footerText=" ">  
+                                <h:outputText value="#{car.model}" />  
+                            </p:column>  
+
+                            <p:column headerText="Numéro de Série" footerText=" ">  
+                                <h:outputText value="#{car.model}" />  
+                            </p:column>  
+
+                            <p:column headerText="Date" footerText=" ">  
+                                <h:outputText value="21/01/2012" />  
+                            </p:column> 
+
+                            <p:column headerText="Observation" footerText=" ">  
+                                <h:outputText value=""/>  
+                            </p:column> 
+
+                        </p:dataTable>  
+
+
+
+                        <h:panelGrid columns="6" cellpadding="10" border="5" style="width: 900px">  
+
+                            <p:panelGrid style="margin-top:20px">  
+                                <f:facet name="header">  
+                                    Heure de Vol  
+                                </f:facet>  
+                                <p:row>  
+                                    <p:column>Element</p:column> 
+                                    <p:column>Marque</p:column>
+                                    <p:column>Type</p:column>
+                                    <p:column>N°Série</p:column>
+                                    <p:column>Date</p:column>
+                                    <p:column>Observation</p:column>
+
+                                </p:row>
+
+                                <p:row>
+                                    <p:column><p:inputText id="elementInventaireAvion"/></p:column>
+                                    <p:column><p:inputText id="marqueInventaireAvion"/></p:column>
+                                    <p:column><p:inputText id="typeInventaireAvion"/></p:column>
+                                    <p:column><p:inputText id="nSerieInventaireAvion"/></p:column>
+                                    <p:column><p:inputMask id="dateInventaireAvion" mask="99/99/9999"/></p:column>
+                                    <p:column><p:inputText id="observationInventaireAvion"/></p:column>
+
+                                </p:row>
+                                <p:row >
+                                    <p:column colspan="3" style="text-align: center">
+                                        <p:commandButton id="cmdAjoutInventaireAvion" type="submit" value="Ajouer à l'Inventaire"/> 
+                                     </p:column>
+                                     <p:column colspan="3" style="text-align: center">
+                                        <p:commandButton action="ajoutAvionVisite.xhtml" id="cmdVisite" type="submit" value="Passer aux Visites"/>
+                                    </p:column>
+                                </p:row>
+                            </p:panelGrid>  
+                        </h:panelGrid>  
+
+
+                    </h:form>
+
+          
+        </ui:define>
+    </ui:composition>
+</html>
