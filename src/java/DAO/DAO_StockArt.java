@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author quent_000
+ * @author quent
  */
 public class DAO_StockArt {
     
