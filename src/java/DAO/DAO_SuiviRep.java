@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import Metier.TempsVol;
+import Metier.SuiviRep;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -17,9 +17,9 @@ import java.util.ArrayList;
  *
  * @author quent_000
  */
-public class DAO_TempsVol {
+public class DAO_SuiviRep {
     
-    public int CREATE(TempsVol tempsvol) throws Exception
+    public int CREATE(SuiviRep suivirep) throws Exception
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -29,13 +29,16 @@ public class DAO_TempsVol {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="insert into tempsvol (id_TempsVol,immat,date_vol,duree) values (?,?,?,?)";
+            String sql="insert into suivirep (id_SuiviRep,immat,type,objet,ref_approb,date_appro,id_personnel) values (?,?,?,?,?,?,?)";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1,tempsvol.getId_TempsVol());
-            ps.setString(2,tempsvol.getImmat());
-            ps.setDate(3,(Date)tempsvol.getDate_vol());
-            ps.setFloat(4,tempsvol.getDuree());
+            ps.setInt(1,suivirep.getId_SuiviRep());
+            ps.setString(2,suivirep.getImmat());
+            ps.setString(3,suivirep.getType());
+            ps.setString(4,suivirep.getObjet());
+            ps.setString(5,suivirep.getRef_approb());
+            ps.setDate(6,(Date)suivirep.getDate_appro());
+            ps.setInt(7,suivirep.getId_personnel());
             
             ret = ps.executeUpdate();
 
@@ -45,43 +48,46 @@ public class DAO_TempsVol {
         return ret;
     }
     
-    public ArrayList<TempsVol> GET_ALL()
+    public ArrayList<SuiviRep> GET_ALL()
     {
-        ArrayList<TempsVol> tempsvol = new ArrayList<TempsVol>();
+        ArrayList<SuiviRep> suivirep = new ArrayList<SuiviRep>();
         
         Connection con = null; 
-        ResultSet rs=null;  
+        ResultSet rs=null;
         Statement st=null;
         try
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM typeaeronef WHERE id_TempsVol = ?";
+            String sql="SELECT * FROM suivirep WHERE id_SuiviRep = ?";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);
             
             while(rs.next())
             {
-                TempsVol b = new TempsVol();
-                b.setId_TempsVol(rs.getInt("id_TempsVol"));
+                SuiviRep b = new SuiviRep();
+                b.setId_SuiviRep(rs.getInt("id_SuiviRep"));
                 b.setImmat(rs.getString("immat"));
-                b.setDate_vol(rs.getDate("date_vol"));
-                b.setDuree(rs.getFloat("duree"));
+                b.setType(rs.getString("type"));
+                b.setObjet(rs.getString("objet"));
+                b.setRef_approb(rs.getString("ref_approb"));
+                b.setDate_appro(rs.getDate("date_appro"));
+                b.setId_personnel(rs.getInt("id_personnel"));
                 
-                tempsvol.add(b);
+                suivirep.add(b);
             }
             
             con.close();
         }
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
-        return tempsvol;
+        return suivirep;
     }
 
-    public TempsVol READ(int id_TempsVol)
+    public SuiviRep READ(int id_SuiviRep)
     {
-        TempsVol tempsvol = new TempsVol();
+        SuiviRep suivirep = new SuiviRep();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -90,57 +96,35 @@ public class DAO_TempsVol {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM tempsvol WHERE id_TempsVol = ?";
+            String sql="SELECT * FROM suivirep WHERE id_SuiviRep = ?";
             
             ps=con.prepareStatement(sql);
-            ps.setInt(1,id_TempsVol);
+            ps.setInt(1,id_SuiviRep);
             
             rs=ps.executeQuery(sql);
             
             while(rs.next())
             {
                 
-                tempsvol.setId_TempsVol(rs.getInt("id_TempsVol"));
-                tempsvol.setImmat(rs.getString("immat"));
-                tempsvol.setDate_vol(rs.getDate("date_vol"));
-                tempsvol.setDuree(rs.getFloat("duree"));
+                suivirep.setId_SuiviRep(rs.getInt("id_SuiviRep"));
+                suivirep.setImmat(rs.getString("immat"));
+                suivirep.setType(rs.getString("type"));
+                suivirep.setObjet(rs.getString("objet"));
+                suivirep.setRef_approb(rs.getString("ref_approb"));
+                suivirep.setDate_appro(rs.getDate("date_appro"));
+                suivirep.setId_personnel(rs.getInt("id_personnel"));
                 
             }
             
             con.close();
         }
-        catch(Exception ex){System.err.println(ex.getMessage());}       
+        catch(Exception ex){System.err.println(ex.getMessage());}      
         
         
-        return tempsvol;
+        return suivirep;
     }
     
-    public int UPDATE(TempsVol tempsvol)
-    {
-        int ret = 0;
-        PreparedStatement ps = null;
-        Connection con = null; 
-        try
-        {
-            Class.forName(DBConnect.sDriver);
-            con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-
-            String sql="UPDATE tempsvol SET id_TempsVol=?, immat=? ,date_vol=? ,duree=?";
-            ps=con.prepareStatement(sql);
-
-            ps.setInt(1,tempsvol.getId_TempsVol());
-            ps.setString(2,tempsvol.getImmat());
-            ps.setDate(3,(Date)tempsvol.getDate_vol());
-            ps.setFloat(4,tempsvol.getDuree());
-            ret = ps.executeUpdate();
-
-            con.close();
-        }
-        catch(Exception ex){System.err.println(ex.getMessage());}
-        return ret;
-    }
-    
-    public int DELETE(int id_TempsVol)
+    public int UPDATE(SuiviRep suivirep)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -150,10 +134,38 @@ public class DAO_TempsVol {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="DELETE tempsvol WHERE id_TempsVol=? ";
+            String sql="UPDATE suivirep SET id_SuiviRep=?, immat=? ,type=? ,objet=? ,ref_approb=? ,date_appro=? ,id_personnel=?";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1, id_TempsVol);
+            ps.setInt(1,suivirep.getId_SuiviRep());
+            ps.setString(2,suivirep.getImmat());
+            ps.setString(3,suivirep.getType());
+            ps.setString(4,suivirep.getObjet());
+            ps.setString(5,suivirep.getRef_approb());
+            ps.setDate(6,(Date)suivirep.getDate_appro());
+            ps.setInt(7,suivirep.getId_personnel());
+            ret = ps.executeUpdate();
+
+            con.close();
+        }
+        catch(Exception ex){System.err.println(ex.getMessage());}
+        return ret;
+    }
+    
+    public int DELETE(int id_SuiviRep)
+    {
+        int ret = 0;
+        PreparedStatement ps = null;
+        Connection con = null;
+        try
+        {
+            Class.forName(DBConnect.sDriver);
+            con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
+
+            String sql="DELETE suivirep WHERE id_SuiviRep=? ";
+            ps=con.prepareStatement(sql);
+
+            ps.setInt(1, id_SuiviRep);
             
             ret = ps.executeUpdate();
 

@@ -4,7 +4,8 @@
  */
 package DAO;
 
-import Metier.TempsVol;
+import Metier.StockArt;
+import Metier.SuiviRep;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -17,9 +18,9 @@ import java.util.ArrayList;
  *
  * @author quent_000
  */
-public class DAO_TempsVol {
+public class DAO_StockArt {
     
-    public int CREATE(TempsVol tempsvol) throws Exception
+    public int CREATE(StockArt stockart) throws Exception
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -29,13 +30,16 @@ public class DAO_TempsVol {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="insert into tempsvol (id_TempsVol,immat,date_vol,duree) values (?,?,?,?)";
+            String sql="insert into stockart (id_StockArt,id_art,id_fourn,id_qtt,date_peremption,serial_nb,StockArtcol) values (?,?,?,?,?,?,?)";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1,tempsvol.getId_TempsVol());
-            ps.setString(2,tempsvol.getImmat());
-            ps.setDate(3,(Date)tempsvol.getDate_vol());
-            ps.setFloat(4,tempsvol.getDuree());
+            ps.setInt(1,stockart.getId_Stockart());
+            ps.setInt(2,stockart.getId_art());
+            ps.setInt(3,stockart.getId_fourn());
+            ps.setInt(4,stockart.getId_qtt());
+            ps.setDate(5,(Date)stockart.getDate_peremtion());
+            ps.setString(6,stockart.getSerial_nb());
+            ps.setString(7,stockart.getStockArtcol());
             
             ret = ps.executeUpdate();
 
@@ -45,43 +49,46 @@ public class DAO_TempsVol {
         return ret;
     }
     
-    public ArrayList<TempsVol> GET_ALL()
+    public ArrayList<StockArt> GET_ALL()
     {
-        ArrayList<TempsVol> tempsvol = new ArrayList<TempsVol>();
+        ArrayList<StockArt> stockart = new ArrayList<StockArt>();
         
         Connection con = null; 
-        ResultSet rs=null;  
+        ResultSet rs=null;
         Statement st=null;
         try
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM typeaeronef WHERE id_TempsVol = ?";
+            String sql="SELECT * FROM suivirep WHERE id_SuiviRep = ?";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);
             
             while(rs.next())
             {
-                TempsVol b = new TempsVol();
-                b.setId_TempsVol(rs.getInt("id_TempsVol"));
-                b.setImmat(rs.getString("immat"));
-                b.setDate_vol(rs.getDate("date_vol"));
-                b.setDuree(rs.getFloat("duree"));
+                StockArt b = new StockArt();
+                b.setId_Stockart(rs.getInt("id_StockArt"));
+                b.setId_art(rs.getInt("id_art"));
+                b.setId_fourn(rs.getInt("id_fourn"));
+                b.setId_qtt(rs.getInt("id_qtt"));
+                b.setDate_peremtion(rs.getDate("date_peremption"));
+                b.setSerial_nb(rs.getString("serial_nb"));
+                b.setStockArtcol(rs.getString("StockArtcol"));
                 
-                tempsvol.add(b);
+                stockart.add(b);
             }
             
             con.close();
         }
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
-        return tempsvol;
+        return stockart;
     }
 
-    public TempsVol READ(int id_TempsVol)
+    public StockArt READ(int id_StockArt)
     {
-        TempsVol tempsvol = new TempsVol();
+        StockArt stockart = new StockArt();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -90,57 +97,35 @@ public class DAO_TempsVol {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM tempsvol WHERE id_TempsVol = ?";
+            String sql="SELECT * FROM stockart WHERE id_StockArt = ?";
             
             ps=con.prepareStatement(sql);
-            ps.setInt(1,id_TempsVol);
+            ps.setInt(1,id_StockArt);
             
             rs=ps.executeQuery(sql);
             
             while(rs.next())
             {
                 
-                tempsvol.setId_TempsVol(rs.getInt("id_TempsVol"));
-                tempsvol.setImmat(rs.getString("immat"));
-                tempsvol.setDate_vol(rs.getDate("date_vol"));
-                tempsvol.setDuree(rs.getFloat("duree"));
+                stockart.setId_Stockart(rs.getInt("id_StockArt"));
+                stockart.setId_art(rs.getInt("id_art"));
+                stockart.setId_fourn(rs.getInt("id_fourn"));
+                stockart.setId_qtt(rs.getInt("id_qtt"));
+                stockart.setDate_peremtion(rs.getDate("date_peremption"));
+                stockart.setSerial_nb(rs.getString("serial_nb"));
+                stockart.setStockArtcol(rs.getString("StockArtcol"));
                 
             }
             
             con.close();
         }
-        catch(Exception ex){System.err.println(ex.getMessage());}       
+        catch(Exception ex){System.err.println(ex.getMessage());}      
         
         
-        return tempsvol;
+        return stockart;
     }
     
-    public int UPDATE(TempsVol tempsvol)
-    {
-        int ret = 0;
-        PreparedStatement ps = null;
-        Connection con = null; 
-        try
-        {
-            Class.forName(DBConnect.sDriver);
-            con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-
-            String sql="UPDATE tempsvol SET id_TempsVol=?, immat=? ,date_vol=? ,duree=?";
-            ps=con.prepareStatement(sql);
-
-            ps.setInt(1,tempsvol.getId_TempsVol());
-            ps.setString(2,tempsvol.getImmat());
-            ps.setDate(3,(Date)tempsvol.getDate_vol());
-            ps.setFloat(4,tempsvol.getDuree());
-            ret = ps.executeUpdate();
-
-            con.close();
-        }
-        catch(Exception ex){System.err.println(ex.getMessage());}
-        return ret;
-    }
-    
-    public int DELETE(int id_TempsVol)
+    public int UPDATE(StockArt stockart)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -150,10 +135,38 @@ public class DAO_TempsVol {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="DELETE tempsvol WHERE id_TempsVol=? ";
+            String sql="UPDATE stockart SET id_StockArt=? ,id_art=? ,id_fourn=? ,id_qtt=? ,date_peremption=? ,serial_nb=? ,StockArtcol=?";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1, id_TempsVol);
+            ps.setInt(1,stockart.getId_Stockart());
+            ps.setInt(2,stockart.getId_art());
+            ps.setInt(3,stockart.getId_fourn());
+            ps.setInt(4,stockart.getId_qtt());
+            ps.setDate(5,(Date)stockart.getDate_peremtion());
+            ps.setString(6,stockart.getSerial_nb());
+            ps.setString(7,stockart.getStockArtcol());
+            ret = ps.executeUpdate();
+
+            con.close();
+        }
+        catch(Exception ex){System.err.println(ex.getMessage());}
+        return ret;
+    }
+    
+    public int DELETE(int id_StockArt)
+    {
+        int ret = 0;
+        PreparedStatement ps = null;
+        Connection con = null;
+        try
+        {
+            Class.forName(DBConnect.sDriver);
+            con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
+
+            String sql="DELETE stockart WHERE id_StockArt=? ";
+            ps=con.prepareStatement(sql);
+
+            ps.setInt(1, id_StockArt);
             
             ret = ps.executeUpdate();
 
