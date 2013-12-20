@@ -1,8 +1,4 @@
 /* Général */
-body {
-	color: #FFFFFF;
-	background: #46A6D7;
-}
 
 /* Navigation */
 #navigation {
@@ -32,10 +28,6 @@ body {
 
 /* --- POSITIONNEMENT --- */
 
-/* Page */
-body {
-	padding: 20px 30px;
-}
 
 /* En-t�te */
 #entete {
