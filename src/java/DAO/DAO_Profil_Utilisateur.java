@@ -4,9 +4,8 @@
  */
 package DAO;
 
-import Metier.Nb_Cycle;
+import Metier.Profil_Utilisateur;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,10 +16,9 @@ import java.util.ArrayList;
  *
  * @author Valentin
  */
-public class DAO_NB_Cycle {
+public class DAO_Profil_Utilisateur {
     
-    
-    public int CREATE(Nb_Cycle nb_cycle) throws Exception
+    public int CREATE(Profil_Utilisateur profil) throws Exception
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -30,13 +28,12 @@ public class DAO_NB_Cycle {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="insert into nbcycle (id_NbCycle,id_cycle,date_vol,nb_cycle) values (?,?,?,?)";
+            String sql="insert into profil_utilisateur (id_profil,nom_profil) values (?,?)";
             ps=con.prepareStatement(sql);
             
-            ps.setInt(1, nb_cycle.getId_NbCyle());
-            ps.setInt(2, nb_cycle.getId_cycle());
-            ps.setDate(3, (Date) nb_cycle.getDate_vol());
-            ps.setInt(4, nb_cycle.getNb_cycle());
+            ps.setInt(1, profil.getId_profil());
+            ps.setString(2, profil.getNom_profil());
+        
 
             ret = ps.executeUpdate();
 
@@ -46,9 +43,9 @@ public class DAO_NB_Cycle {
         return ret;
     }
     
-    public ArrayList<Nb_Cycle> GET_ALL()
+    public ArrayList<Profil_Utilisateur> GET_ALL()
     {
-        ArrayList<Nb_Cycle> nb_cycle = new ArrayList<Nb_Cycle>();
+        ArrayList<Profil_Utilisateur> profil = new ArrayList<Profil_Utilisateur>();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -57,32 +54,30 @@ public class DAO_NB_Cycle {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM moteuraeronef WHERE id_moteur = ?";
+            String sql="SELECT * FROM profil_utilisateur WHERE id_profil = ?";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);
             
             while(rs.next())
             {
-                Nb_Cycle b = new Nb_Cycle();
-                b.setId_NbCyle(rs.getInt("id_NbCycle"));
-                b.setId_cycle(rs.getInt("id_cycle"));
-                b.setDate_vol(rs.getDate("date_vol"));
-                b.setNb_cycle(rs.getInt("nb_cycle"));
+                Profil_Utilisateur b = new Profil_Utilisateur();
+                b.setId_profil(rs.getInt("id_profil"));
+                b.setNom_profil(rs.getString("nom_profil"));
                 
-                nb_cycle.add(b);
+                profil.add(b);
             }
             
             con.close();
         }
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
-        return nb_cycle;
+        return profil;
     }
 
-   public Nb_Cycle READ(int nb_cycle)
+   public Profil_Utilisateur READ(int profil)
     {
-        Nb_Cycle b = new Nb_Cycle();
+        Profil_Utilisateur b = new Profil_Utilisateur();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -91,19 +86,17 @@ public class DAO_NB_Cycle {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM nbcycle WHERE id_NbCycle= ?";
+            String sql="SELECT * FROM profil_utilisateur WHERE id_profil= ?";
             
             ps=con.prepareStatement(sql);
-            ps.setInt(1,nb_cycle);
+            ps.setInt(1,profil);
             
             rs=ps.executeQuery(sql);
             
             while(rs.next())
             {
-                b.setId_NbCyle(rs.getInt("id_NbCycle"));
-                b.setId_cycle(rs.getInt("id_cycle"));
-                b.setDate_vol(rs.getDate("date_vol"));
-                b.setNb_cycle(rs.getInt("nb_cycle"));
+                b.setId_profil(rs.getInt("id_profil"));
+                b.setNom_profil(rs.getString("nom_profil"));
             }
             
             con.close();
@@ -114,7 +107,7 @@ public class DAO_NB_Cycle {
         return b;
     }
     
-    public int UPDATE(Nb_Cycle nb_cycle)
+    public int UPDATE(Profil_Utilisateur profil)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -124,13 +117,11 @@ public class DAO_NB_Cycle {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="UPDATE nbcycle SET id_NbCycle=? ,id_cycle=? ,date_vol=? ,nb_cycle=?";
+            String sql="UPDATE profil_utilisateur SET id_profil=? ,nom_profil=?";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1, nb_cycle.getId_NbCyle());
-            ps.setInt(2, nb_cycle.getId_cycle());
-            ps.setDate(3, (Date) nb_cycle.getDate_vol());
-            ps.setInt(4, nb_cycle.getNb_cycle());
+            ps.setInt(1, profil.getId_profil());
+            ps.setString(2, profil.getNom_profil());
             
             ret = ps.executeUpdate();
 
@@ -140,7 +131,7 @@ public class DAO_NB_Cycle {
         return ret;
     }
     
-    public int DELETE(int id_nbCycle)
+    public int DELETE(int id_profil)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -150,10 +141,10 @@ public class DAO_NB_Cycle {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="DELETE nbcycle WHERE id_NbCycle=? ";
+            String sql="DELETE profil_utilisateur WHERE id_profil=? ";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1, id_nbCycle);
+            ps.setInt(1, id_profil);
             
             ret = ps.executeUpdate();
 
