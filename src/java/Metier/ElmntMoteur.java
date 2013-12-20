@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class ElmntMoteur {
     
-    private int id_emlnt;
+    private int id_elmnt;
     private String designation;
     private int id_Const_Marque;
     private String type;
@@ -22,17 +22,17 @@ public class ElmntMoteur {
     private int id_moteur;
 
     /**
-     * @return the id_emlnt
+     * @return the id_elmnt
      */
-    public int getId_emlnt() {
-        return id_emlnt;
+    public int getId_elmnt() {
+        return id_elmnt;
     }
 
     /**
-     * @param id_emlnt the id_emlnt to set
+     * @param id_elmnt the id_elmnt to set
      */
-    public void setId_emlnt(int id_emlnt) {
-        this.id_emlnt = id_emlnt;
+    public void setId_elmnt(int id_elmnt) {
+        this.id_elmnt = id_elmnt;
     }
 
     /**
