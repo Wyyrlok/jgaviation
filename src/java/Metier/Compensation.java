@@ -18,7 +18,7 @@ public class Compensation {
     private float ecartsN;
     private float ecartsE;
     private float ecartsS;
-    private float ecartW;
+    private float ecartsW;
     private float ecarts45;
     private float ecarts135;
     private float ecarts225;
@@ -112,15 +112,15 @@ public class Compensation {
     /**
      * @return the ecartW
      */
-    public float getEcartW() {
-        return ecartW;
+    public float getEcartsW() {
+        return ecartsW;
     }
 
     /**
      * @param ecartW the ecartW to set
      */
-    public void setEcartW(float ecartW) {
-        this.ecartW = ecartW;
+    public void setEcartsW(float ecartsW) {
+        this.ecartsW = ecartsW;
     }
 
     /**
