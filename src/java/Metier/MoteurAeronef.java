@@ -13,7 +13,7 @@ import java.util.Date;
 public class MoteurAeronef {
     
     private int id_Moteur;
-    private String prosition;
+    private String position;
     private Date date_inventaire;
     private String immat;
 
@@ -32,17 +32,17 @@ public class MoteurAeronef {
     }
 
     /**
-     * @return the prosition
+     * @return the position
      */
-    public String getProsition() {
-        return prosition;
+    public String getPosition() {
+        return position;
     }
 
     /**
-     * @param prosition the prosition to set
+     * @param position the position to set
      */
-    public void setProsition(String prosition) {
-        this.prosition = prosition;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     /**

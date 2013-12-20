@@ -4,8 +4,9 @@
  */
 package DAO;
 
-import Metier.Maintenance;
+import Metier.MoteurAeronef;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,10 +17,9 @@ import java.util.ArrayList;
  *
  * @author Valentin
  */
-public class DAO_Maintenance {
-
+public class DAO_MoteurAeronef {
     
-    public int CREATE(Maintenance maintenance) throws Exception
+    public int CREATE(MoteurAeronef moteuraeronef) throws Exception
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -29,17 +29,13 @@ public class DAO_Maintenance {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="insert into maintenance (id_Maintenance,designation,duree_presta,description,nHeure,nDuree,nHeureBut,nDureeBut) values (?,?,?,?,?,?,?,?)";
+            String sql="insert into moteuraeronef (id_moteur,position,date_inventaire,immat) values (?,?,?,?)";
             ps=con.prepareStatement(sql);
             
-            ps.setInt(1, maintenance.getId_Maintenance());
-            ps.setString(2, maintenance.getDesignation());
-            ps.setFloat(3,maintenance.getDuree_presta());
-            ps.setString(4, maintenance.getDescritpion());
-            ps.setFloat(5, maintenance.getnHeure());
-            ps.setFloat(6, maintenance.getnDuree());
-            ps.setFloat(7, maintenance.getnHeureBut());
-            ps.setFloat(8, maintenance.getnDureeBut());
+            ps.setInt(1, moteuraeronef.getId_Moteur());
+            ps.setString(2, moteuraeronef.getPosition());
+            ps.setDate(3, (Date) moteuraeronef.getDate_inventaire());
+            ps.setString(4, moteuraeronef.getImmat());
 
             ret = ps.executeUpdate();
 
@@ -49,9 +45,9 @@ public class DAO_Maintenance {
         return ret;
     }
     
-    public ArrayList<Maintenance> GET_ALL()
+    public ArrayList<MoteurAeronef> GET_ALL()
     {
-        ArrayList<Maintenance> maintenance = new ArrayList<Maintenance>();
+        ArrayList<MoteurAeronef> moteuraeronef = new ArrayList<MoteurAeronef>();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -60,36 +56,32 @@ public class DAO_Maintenance {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM maintenance WHERE id_Maintenance = ?";
+            String sql="SELECT * FROM moteuraeronef WHERE id_moteur = ?";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);
             
             while(rs.next())
             {
-                Maintenance b = new Maintenance();
-                b.setId_Maintenance(rs.getInt("id_Maintenance"));
-                b.setDesignation(rs.getString("designation"));
-                b.setDuree_presta(rs.getFloat("duree_presta"));
-                b.setDescritpion(rs.getString("description"));
-                b.setnHeure(rs.getFloat("nHeure"));
-                b.setnDuree(rs.getFloat("nDuree"));
-                b.setnHeureBut(rs.getFloat("nHeureBut"));
-                b.setnDureeBut(rs.getFloat("nDureeBut"));
+                MoteurAeronef b = new MoteurAeronef();
+                b.setId_Moteur(rs.getInt("id_moteur"));
+                b.setPosition(rs.getString("position"));
+                b.setDate_inventaire(rs.getDate("date_inventaire"));
+                b.setImmat(rs.getString("immat"));
                 
-                maintenance.add(b);
+                moteuraeronef.add(b);
             }
             
             con.close();
         }
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
-        return maintenance;
+        return moteuraeronef;
     }
 
-   public Maintenance READ(int id_Maintenance)
+   public MoteurAeronef READ(int id_Maintenance)
     {
-        Maintenance b = new Maintenance();
+        MoteurAeronef b = new MoteurAeronef();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -98,7 +90,7 @@ public class DAO_Maintenance {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM maintenance WHERE id_Maintenance= ?";
+            String sql="SELECT * FROM moteuraeronef WHERE id_moteur= ?";
             
             ps=con.prepareStatement(sql);
             ps.setInt(1,id_Maintenance);
@@ -107,14 +99,10 @@ public class DAO_Maintenance {
             
             while(rs.next())
             {
-                b.setId_Maintenance(rs.getInt("id_Maintenance"));
-                b.setDesignation(rs.getString("designation"));
-                b.setDuree_presta(rs.getFloat("duree_presta"));
-                b.setDescritpion(rs.getString("description"));
-                b.setnHeure(rs.getFloat("nHeure"));
-                b.setnDuree(rs.getFloat("nDuree"));
-                b.setnHeureBut(rs.getFloat("nHeureBut"));
-                b.setnDureeBut(rs.getFloat("nDureeBut"));
+                b.setId_Moteur(rs.getInt("id_moteur"));
+                b.setPosition(rs.getString("position"));
+                b.setDate_inventaire(rs.getDate("date_inventaire"));
+                b.setImmat(rs.getString("immat"));
             }
             
             con.close();
@@ -125,7 +113,7 @@ public class DAO_Maintenance {
         return b;
     }
     
-    public int UPDATE(Maintenance maintenance)
+    public int UPDATE(MoteurAeronef moteuraeronef)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -135,17 +123,13 @@ public class DAO_Maintenance {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="UPDATE maintenance SET id_Maintenance=? ,designation=? ,duree_presta=? ,description=? ,nHeure=? ,nDuree=? ,nHeureBut=? ,nDureeBut=?";
+            String sql="UPDATE moteuraeronef SET id_moteur=? ,position=? ,date_inventaire=? ,immat=?";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1, maintenance.getId_Maintenance());
-            ps.setString(2, maintenance.getDesignation());
-            ps.setFloat(3,maintenance.getDuree_presta());
-            ps.setString(4, maintenance.getDescritpion());
-            ps.setFloat(5, maintenance.getnHeure());
-            ps.setFloat(6, maintenance.getnDuree());
-            ps.setFloat(7, maintenance.getnHeureBut());
-            ps.setFloat(8, maintenance.getnDureeBut());
+            ps.setInt(1, moteuraeronef.getId_Moteur());
+            ps.setString(2, moteuraeronef.getPosition());
+            ps.setDate(3, (Date) moteuraeronef.getDate_inventaire());
+            ps.setString(4, moteuraeronef.getImmat());
             
             ret = ps.executeUpdate();
 
@@ -155,7 +139,7 @@ public class DAO_Maintenance {
         return ret;
     }
     
-    public int DELETE(int id_Maintenance)
+    public int DELETE(int id_moteur)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -165,10 +149,10 @@ public class DAO_Maintenance {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="DELETE maintenance WHERE id_Maintenance=? ";
+            String sql="DELETE moteuraeronef WHERE id_moteur=? ";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1, id_Maintenance);
+            ps.setInt(1, id_moteur);
             
             ret = ps.executeUpdate();
 
