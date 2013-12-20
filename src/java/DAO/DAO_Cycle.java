@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import Metier.Compensation;
+import Metier.Cycle;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class DAO_Cycle {
        
     
-    public int CREATE(Compensation compensation) throws Exception
+    public int CREATE(Cycle cycle) throws Exception
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -30,21 +30,14 @@ public class DAO_Cycle {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="insert into compensation (id_compensation,num_rev,date,ecartsN,ecartsE,ecartsS,ecartsW,ecarts45,ecarts135,ecarts225,ecarts315,id_moteur) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql="insert into cycle (id_Cycle,nom_equipement,immat,bmodeFacteur,nFacteur) values (?,?,?,?,?)";
             ps=con.prepareStatement(sql);
             
-            ps.setInt(1, compensation.getId_compensation());
-            ps.setInt(2,compensation.getNum_rev());
-            ps.setDate(3, (Date) compensation.getDate());
-            ps.setFloat(4,compensation.getEcartsN());
-            ps.setFloat(5,compensation.getEcartsE());
-            ps.setFloat(6,compensation.getEcartsS());
-            ps.setFloat(7,compensation.getEcartsW());
-            ps.setFloat(8, compensation.getEcarts45());
-            ps.setFloat(9, compensation.getEcarts135());
-            ps.setFloat(10, compensation.getEcarts225());
-            ps.setFloat(11, compensation.getEcarts315());
-            ps.setInt(12, compensation.getId_moteur());
+            ps.setInt(1, cycle.getId_Cycle());
+            ps.setString(2,cycle.getNom_Equipement());
+            ps.setString(3,cycle.getImmat());
+            ps.setInt(4,cycle.getbModeFacteur());
+            ps.setFloat(5,cycle.getnFacteur());
             
             ret = ps.executeUpdate();
 
@@ -54,9 +47,9 @@ public class DAO_Cycle {
         return ret;
     }
     
-    public ArrayList<Compensation> GET_ALL()
+    public ArrayList<Cycle> GET_ALL()
     {
-        ArrayList<Compensation> compensation = new ArrayList<Compensation>();
+        ArrayList<Cycle> cycle = new ArrayList<Cycle>();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -65,40 +58,34 @@ public class DAO_Cycle {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM compensation WHERE id_compensation = ?";
+            String sql="SELECT * FROM cycle WHERE id_Cycle = ?";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);
             
             while(rs.next())
             {
-                Compensation b = new Compensation();
-                b.setId_compensation(rs.getInt("id_compensation"));
-                b.setNum_rev(rs.getInt("num_rev"));
-                b.setDate(rs.getDate("date"));
-                b.setEcartsN(rs.getFloat("ecrartsN"));
-                b.setEcartsE(rs.getFloat("ecrartsE"));                
-                b.setEcartsS(rs.getFloat("ecrartsS"));
-                b.setEcartsW(rs.getFloat("ecartsW"));
-                b.setEcarts45(rs.getFloat("ecarts45"));
-                b.setEcarts135(rs.getFloat("ecarts135"));
-                b.setEcarts225(rs.getFloat("ecarts225"));
-                b.setEcarts315(rs.getFloat("ecarts315"));
-                b.setId_moteur(rs.getInt("id_moteur"));
+                Cycle b = new Cycle();
+                b.setId_Cycle(rs.getInt("id_Cycle"));
+                b.setNom_Equipement(rs.getString("nom_equipement"));
+                b.setImmat(rs.getString("immat"));
+                b.setbModeFacteur(rs.getInt("bmodeFacteur"));
+                b.setnFacteur(rs.getFloat("nFacteur"));                
+               
                 
-                compensation.add(b);
+                cycle.add(b);
             }
             
             con.close();
         }
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
-        return compensation;
+        return cycle;
     }
 
-   public Compensation READ(int id_compensation)
+   public Cycle READ(int id_Cycle)
     {
-        Compensation b = new Compensation();
+        Cycle b = new Cycle();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -107,27 +94,20 @@ public class DAO_Cycle {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM compensation WHERE id_compensation = ?";
+            String sql="SELECT * FROM cycle WHERE id_Cycle = ?";
             
             ps=con.prepareStatement(sql);
-            ps.setInt(1,id_compensation);
+            ps.setInt(1,id_Cycle);
             
             rs=ps.executeQuery(sql);
             
             while(rs.next())
             {
-                b.setId_compensation(rs.getInt("id_compensation"));
-                b.setNum_rev(rs.getInt("num_rev"));
-                b.setDate(rs.getDate("date"));
-                b.setEcartsN(rs.getFloat("ecrartsN"));
-                b.setEcartsE(rs.getFloat("ecrartsE"));                
-                b.setEcartsS(rs.getFloat("ecrartsS"));
-                b.setEcartsW(rs.getFloat("ecartsW"));
-                b.setEcarts45(rs.getFloat("ecarts45"));
-                b.setEcarts135(rs.getFloat("ecarts135"));
-                b.setEcarts225(rs.getFloat("ecarts225"));
-                b.setEcarts315(rs.getFloat("ecarts315"));
-                b.setId_moteur(rs.getInt("id_moteur"));
+                b.setId_Cycle(rs.getInt("id_Cycle"));
+                b.setNom_Equipement(rs.getString("nom_equipement"));
+                b.setImmat(rs.getString("immat"));
+                b.setbModeFacteur(rs.getInt("bmodeFacteur"));
+                b.setnFacteur(rs.getFloat("nFacteur"));
             }
             
             con.close();
@@ -138,7 +118,7 @@ public class DAO_Cycle {
         return b;
     }
     
-    public int UPDATE(Compensation compensation)
+    public int UPDATE(Cycle cycle)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -148,21 +128,14 @@ public class DAO_Cycle {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="UPDATE cn_moteur SET id_compensation=? ,num_rev=? ,date=? ,ecartsN=? ,ecartsE=? ,ecartsS=? ,ecartsW=? ,ecarts45=? ,ecarts135=? ,ecarts225=? ,ecarts315=? ,id_moteur=?";
+            String sql="UPDATE cycle SET id_Cycle=? ,nom_equipement=? ,immat=? ,bmodeFacteur=? ,nFacteur=?";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1, compensation.getId_compensation());
-            ps.setInt(2,compensation.getNum_rev());
-            ps.setDate(3, (Date) compensation.getDate());
-            ps.setFloat(4,compensation.getEcartsN());
-            ps.setFloat(5,compensation.getEcartsE());
-            ps.setFloat(6,compensation.getEcartsS());
-            ps.setFloat(7,compensation.getEcartsW());
-            ps.setFloat(8, compensation.getEcarts45());
-            ps.setFloat(9, compensation.getEcarts135());
-            ps.setFloat(10, compensation.getEcarts225());
-            ps.setFloat(11, compensation.getEcarts315());
-            ps.setInt(12, compensation.getId_moteur());
+            ps.setInt(1, cycle.getId_Cycle());
+            ps.setString(2,cycle.getNom_Equipement());
+            ps.setString(3,cycle.getImmat());
+            ps.setInt(4,cycle.getbModeFacteur());
+            ps.setFloat(5,cycle.getnFacteur());
             
             ret = ps.executeUpdate();
 
@@ -172,7 +145,7 @@ public class DAO_Cycle {
         return ret;
     }
     
-    public int DELETE(int id_compensation)
+    public int DELETE(int id_Cycle)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -182,10 +155,10 @@ public class DAO_Cycle {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="DELETE compensation WHERE id_compensation=? ";
+            String sql="DELETE cycle WHERE id_Cycle=? ";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1, id_compensation);
+            ps.setInt(1, id_Cycle);
             
             ret = ps.executeUpdate();
 
