@@ -5,7 +5,6 @@
 package DAO;
 
 import Metier.StockArt;
-import Metier.SuiviRep;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -33,13 +32,13 @@ public class DAO_StockArt {
             String sql="insert into stockart (id_StockArt,id_art,id_fourn,id_qtt,date_peremption,serial_nb,StockArtcol) values (?,?,?,?,?,?,?)";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1,stockart.getId_Stockart());
+            ps.setInt(1,stockart.getId_StockArt());
             ps.setInt(2,stockart.getId_art());
             ps.setInt(3,stockart.getId_fourn());
             ps.setInt(4,stockart.getId_qtt());
-            ps.setDate(5,(Date)stockart.getDate_peremtion());
+            ps.setDate(5,(Date)stockart.getDate_peremption());
             ps.setString(6,stockart.getSerial_nb());
-            ps.setString(7,stockart.getStockArtcol());
+            ps.setString(7,stockart.getStockArtCol());
             
             ret = ps.executeUpdate();
 
@@ -68,13 +67,13 @@ public class DAO_StockArt {
             while(rs.next())
             {
                 StockArt b = new StockArt();
-                b.setId_Stockart(rs.getInt("id_StockArt"));
+                b.setId_StockArt(rs.getInt("id_StockArt"));
                 b.setId_art(rs.getInt("id_art"));
                 b.setId_fourn(rs.getInt("id_fourn"));
                 b.setId_qtt(rs.getInt("id_qtt"));
-                b.setDate_peremtion(rs.getDate("date_peremption"));
+                b.setDate_peremption(rs.getDate("date_peremption"));
                 b.setSerial_nb(rs.getString("serial_nb"));
-                b.setStockArtcol(rs.getString("StockArtcol"));
+                b.setStockArtCol(rs.getString("StockArtcol"));
                 
                 stockart.add(b);
             }
@@ -107,13 +106,13 @@ public class DAO_StockArt {
             while(rs.next())
             {
                 
-                stockart.setId_Stockart(rs.getInt("id_StockArt"));
+                stockart.setId_StockArt(rs.getInt("id_StockArt"));
                 stockart.setId_art(rs.getInt("id_art"));
                 stockart.setId_fourn(rs.getInt("id_fourn"));
                 stockart.setId_qtt(rs.getInt("id_qtt"));
-                stockart.setDate_peremtion(rs.getDate("date_peremption"));
+                stockart.setDate_peremption(rs.getDate("date_peremption"));
                 stockart.setSerial_nb(rs.getString("serial_nb"));
-                stockart.setStockArtcol(rs.getString("StockArtcol"));
+                stockart.setStockArtCol(rs.getString("StockArtcol"));
                 
             }
             
@@ -138,13 +137,13 @@ public class DAO_StockArt {
             String sql="UPDATE stockart SET id_StockArt=? ,id_art=? ,id_fourn=? ,id_qtt=? ,date_peremption=? ,serial_nb=? ,StockArtcol=?";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1,stockart.getId_Stockart());
+            ps.setInt(1,stockart.getId_StockArt());
             ps.setInt(2,stockart.getId_art());
             ps.setInt(3,stockart.getId_fourn());
             ps.setInt(4,stockart.getId_qtt());
-            ps.setDate(5,(Date)stockart.getDate_peremtion());
+            ps.setDate(5,(Date)stockart.getDate_peremption());
             ps.setString(6,stockart.getSerial_nb());
-            ps.setString(7,stockart.getStockArtcol());
+            ps.setString(7,stockart.getStockArtCol());
             ret = ps.executeUpdate();
 
             con.close();
