@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import DAO.DBConnect;
 import Metier.Visite;
 import java.sql.Connection;
 import java.sql.Date;
@@ -69,7 +70,7 @@ public class DAO_Visite {
             while(rs.next())
             {
                 Visite b = new Visite();
-                b.setId_Visite(rs.getInt("id_visite"));
+                b.setId_Visite(rs.getInt("id_Visite"));
                 b.setImmat(rs.getString("immat"));
                 b.setSaisie_date(rs.getDate("saisie_date"));
                 b.setSaisie_heure(rs.getFloat("saisie_heure"));
@@ -86,10 +87,10 @@ public class DAO_Visite {
         
         return visite;
     }
-/*
-    public Workorder READ(int id_wo)
+
+    public Visite READ(int id_Visite)
     {
-        Workorder workorder = new Workorder();
+        Visite visite = new Visite();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -98,21 +99,22 @@ public class DAO_Visite {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM workorder WHERE id_wo = ?";
+            String sql="SELECT * FROM visite WHERE id_Visite = ?";
             
             ps=con.prepareStatement(sql);
-            ps.setInt(1,id_wo);
+            ps.setInt(1,id_Visite);
             
             rs=ps.executeQuery(sql);
             
             while(rs.next())
             {
-                workorder.setId_wo(rs.getInt("id_wo"));
-                workorder.setImmat(rs.getString("immat"));
-                workorder.setId_proprio(rs.getInt("id_proprio"));
-                workorder.setDate_in(rs.getDate("date_in"));
-                workorder.setDate_out(rs.getDate("date_out"));
-                workorder.setNum_wo(rs.getString("num_wo"));
+                visite.setId_Visite(rs.getInt("id_Visite"));
+                visite.setImmat(rs.getString("immat"));
+                visite.setSaisie_date(rs.getDate("saisie_date"));
+                visite.setSaisie_heure(rs.getFloat("saisie_heure"));
+                visite.setTol_date(rs.getDate("tol_date"));
+                visite.setTol_heure(rs.getFloat("tol_heure"));
+                visite.setDer_date(rs.getDate("der_date"));
             }
             
             con.close();
@@ -120,10 +122,10 @@ public class DAO_Visite {
         catch(Exception ex){System.err.println(ex.getMessage());}       
         
         
-        return workorder;
+        return visite;
     }
     
-    public int UPDATE(Workorder workorder)
+    public int UPDATE(Visite visite)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -133,15 +135,18 @@ public class DAO_Visite {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="UPDATE workorder SET id_wo=?, immat=? ,id_proprio=? ,date_in=? ,date_out=? ,num_wo=?";
+            String sql="UPDATE visite SET id_Visite=?, immat=? ,saisie_date=? ,saisie_heure=? ,tol_date=? ,tol_heure=? ,der_date=? ,der_heure=? ,id_maintenance=?";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1,workorder.getId_wo());
-            ps.setString(2,workorder.getImmat());
-            ps.setInt(3,workorder.getId_proprio());
-            ps.setDate(4, (Date) workorder.getDate_in());
-            ps.setDate(5, (Date) workorder.getDate_out());
-            ps.setString(6,workorder.getNum_wo());
+            ps.setInt(1,visite.getId_Visite());
+            ps.setString(2,visite.getImmat());
+            ps.setDate(3,(Date)visite.getSaisie_date());
+            ps.setFloat(4,visite.getSaisie_heure());
+            ps.setDate(5,(Date)visite.getTol_date());
+            ps.setFloat(6,visite.getTol_heure());
+            ps.setDate(7,(Date)visite.getDer_date());
+            ps.setFloat(8,visite.getDer_heure());
+            ps.setInt(9,visite.getId_maintenance());
             
             ret = ps.executeUpdate();
 
@@ -151,7 +156,7 @@ public class DAO_Visite {
         return ret;
     }
     
-    public int DELETE(int id_wo)
+    public int DELETE(int id_Visite)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -161,10 +166,10 @@ public class DAO_Visite {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="DELETE workorder WHERE id_wo=? ";
+            String sql="DELETE visite WHERE id_Visite=? ";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1, id_wo);
+            ps.setInt(1, id_Visite);
             
             ret = ps.executeUpdate();
 
@@ -173,6 +178,4 @@ public class DAO_Visite {
         catch(Exception ex){System.err.println(ex.getMessage());}
         return ret;
     }
-    */
 }
-
