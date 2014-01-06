@@ -27,6 +27,12 @@ div#mws-header
 	border-color:#FF6633;
 }
 
+.ui-textinput
+{
+	text-shadow:0 0 6px rgba(197, 213, 42, 0.5);
+        font-size: 1em !important;
+}
+
 .mws-panel .mws-panel-header span, 
 div#mws-navigation ul li.active a, 
 div#mws-navigation ul li.active span, 
@@ -45,6 +51,8 @@ div#mws-user-tools #mws-user-info #mws-user-functions #mws-username,
 {
 	color:#FF6633;
 	text-shadow:0 0 6px rgba(197, 213, 42, 0.5);
+        font-size: large;
+        text-decoration: underline;
 }
 
 div#mws-searchbox input.mws-search-submit, 
