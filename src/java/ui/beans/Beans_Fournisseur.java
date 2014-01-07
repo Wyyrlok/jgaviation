@@ -28,13 +28,10 @@ public class Beans_Fournisseur implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
-    public String AddConstructeur() throws Exception {
+    public String AddFournisseur() throws Exception {
 
         Fournisseur fourni = new Fournisseur();
-        fourni.setId_fournisseur(getId_Fournisseur());
         fourni.setNom_fourn(getNom_fourn());
-
-
 
         int add = new DAO.DAO_Fournisseur().CREATE(fourni);
         if (add != 0) {

@@ -29,11 +29,10 @@ public class DAO_Fournisseur {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="insert into fournisseur (id_fournisseur,nom_fourn) values (?,?)";
+            String sql="insert into fournisseur (nom_fourn) values (?)";
             ps=con.prepareStatement(sql);
             
-            ps.setInt(1, fournisseur.getId_fournisseur());
-            ps.setString(2,fournisseur.getNom_fourn());
+            ps.setString(1,fournisseur.getNom_fourn());
 
             ret = ps.executeUpdate();
 

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+        <ui:composition template="layout.html">
+            <ui:define name="myspecialcontent">
+                <p:fieldset legend="Ajout d'un nouveau propriétaire : " style="font-size: x-large;">  
+                    <h:panelGrid columns="3" cellpadding="20">  
+                        <h:form>
+                            <table id="tblAjoutAvion">
+                                <tr style="height: 20px;"></tr>
+                                <tr>
+                                    <td id="colImage" width="80px">
+                                        <p:graphicImage value="/images/Icon-user.png" width="100px" />
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td style="width: 30px;"></td>
+                                                <td style="width: 100px;"> 
+                                                    <h:outputText value="Nom :"/> 
+                                                </td> 
+                                                <td width="400px"> 
+                                                    <h:inputText id="snom" required="true" requiredMessage="Le nom est obligatoire" value="#{util_beans.add_nom}" styleClass="ui-textinput" /> 
+                                                    <p:message for="snom" display="text" />
+                                                </td> 
+                                            </tr>
+                                       
+                                            <tr style="height: 5px;"></tr>
+                                            <tr> 
+                                                <td></td>
+                                                <td> 
+                                                   <h:outputText value="Prénom :"/> 
+                                                </td> 
+                                            
+                                                <td width="400px"> 
+                                                    <h:inputText id="sprenom" required="true" requiredMessage="Le prenom est obligatoire" value="#{util_beans.add_prenom}" styleClass="ui-textinput" /> 
+                                                    <p:message for="sprenom" display="text" />
+                                                </td>                                                     
+                                            </tr>                                            
+                                            <tr style="height: 5px;"></tr>
+                                            <tr> 
+                                                <td></td>
+                                                <td> 
+                                                    <h:outputText value="Profil :"/> 
+                                                </td> 
+                                                <td> 
+                                                    <h:selectOneMenu id="proflst" value="#{util_beans.add_selecteditem}"> 
+                                                        <f:selectItem itemLabel="Administrateur" itemValue="1" /> 
+                                                        <f:selectItem itemLabel="Mécanique" itemValue="2" /> 
+                                                        <!--<f:selectItems value="#{util_beans.listeCategoriesItem}" />-->
+                                                        
+                                                    </h:selectOneMenu> 
+                                                </td> 
+                                            </tr>
+
+                                            <tr style="height: 5px;"></tr>
+                                            <tr> 
+                                                <td></td>
+                                                <td> 
+                                                    <h:outputText value="Login :"/> 
+                                                </td> 
+                                                <td> 
+                                                    <h:inputText id="slogin" value="#{util_beans.add_login}" styleClass="ui-textinput"/> 
+                                                </td> 
+                                            </tr>
+                                            <tr style="height: 5px;"></tr>
+                                            <tr> 
+                                                <td></td>
+                                                <td> 
+                                                    <h:outputText value="Mot de passe :"/>  
+                                                </td> 
+                                                <td>
+                                                    <h:inputText id="mdp1" required="true" value="#{util_beans.add_pwd1}" styleClass="ui-textinput" />
+                                                </td>
+                                            </tr>
+                                            <tr style="height: 5px;"></tr>
+                                            <tr> 
+                                                <td></td>
+                                                <td> 
+                                                    <h:outputText value="Confirmation du mot de passe :"/>  
+                                                </td> 
+                                                <td>
+                                                    <h:inputText id="mdp2" value="#{util_beans.add_pwd2}" styleClass="ui-textinput" />
+                                                </td>
+                                            </tr>                                         
+                                            <tr style="height: 25px;"></tr>
+                                            <tr> 
+                                                <td></td>
+                                                <td colspan="2" id="cmdAjout">  
+                                                    <h:commandButton type="submit" value="Enregistrer" style="margin-top: 15px" action="#{util_beans.addUser}"></h:commandButton>
+                                                </td>  
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h:form>
+                    </h:panelGrid>  
+                </p:fieldset>  
+            </ui:define>
+        </ui:composition>
+</html>

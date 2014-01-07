@@ -29,11 +29,10 @@ public class DAO_Constructeur {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
 
-            String sql="insert into constructeur (id_const,nom_const) values (?,?)";
+            String sql="insert into constructeur (nom_const) values (?)";
             ps=con.prepareStatement(sql);
 
-            ps.setInt(1,constructeur.getId_const());
-            ps.setString(2,constructeur.getNom_const());
+            ps.setString(1,constructeur.getNom_const());
  
             ret = ps.executeUpdate();
 
