@@ -16,6 +16,10 @@
 /* (1) Inset Effect
 ================================================== */
 
+.someCssClassName {
+    background-image: url(icons/16/document.png)
+}
+
 .mws-inset
 {
 	background-image:url(../../images/core/mws-inset.png);

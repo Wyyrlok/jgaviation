@@ -4,23 +4,29 @@
  * and open the template in the editor.
  */
 
-package Metier;
+package ui.beans;
 
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
-import java.util.AbstractList;
-import java.util.ArrayList;
+import Metier.Proprietaire;
+import java.io.Serializable;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author Fabien
  */
-public class Proprietaire 
+@ManagedBean(name="proprio_beans")
+@SessionScoped()
+public class Beans_Proprio implements Serializable
 {
-    private int id_proprio;
-    private String civilite;
+    private Proprietaire selectedproprio;
+    
     private String nom;
     private String prenom;
+    private String civ;
     private String societe;
     private String adresse1;
     private String adresse2;
@@ -28,54 +34,55 @@ public class Proprietaire
     private String nip;
     private String tel1;
     private String tel2;
-    private String email;
-    private String email2;
+    private String mail1;
+    private String mail2;
     private String fax;
-    private String portable;
     private String prive;
-    private List<Aeronef> _lstAvion;
-    
-    public void Proprietaire()
-    {
-        _lstAvion = new ArrayList<>();
-    }
+    private String portable;
+    private int id_proprio;
 
-    public int getNbAeronef()
+    private void addMessage(FacesMessage message)
     {
-        if( _lstAvion != null )
-            return _lstAvion.size();
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
+    public String AddProprio() throws Exception
+    {
+        Proprietaire proprio = new Proprietaire();
+        proprio.setCivilite(civ);
+        proprio.setNom(nom);
+        proprio.setPrenom(prenom);
+        proprio.setAdresse1(adresse1);
+        proprio.setAdresse2(adresse2);
+        proprio.setSociete(societe);
+        proprio.setVille(ville);
+        proprio.setNip(nip);
+        proprio.setTel1(tel1);
+        proprio.setTel2(tel2);
+        proprio.setEmail(mail1);
+        proprio.setEmail2(mail2);
+        proprio.setFax(fax);
+        proprio.setPrive(prive);
+        proprio.setPortable(portable);
+        
+        int add = new DAO.DAO_Proprietaire().CREATE(proprio);
+        if( add != 0 )
+        {
+            addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Information : ", "Le propriétaire a bien été ajouté!"));
+            return "listProprietaire";
+        }
         else
-            return 0;
+        {
+            addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Enregistrement fail!!!", null));
+            return "";   
+        }
     }
     
-    /**
-     * @return the id_proprio
-     */
-    public int getId_proprio() {
-        return id_proprio;
+    public List<Proprietaire> GET_LIST()
+    {
+        return new DAO.DAO_Proprietaire().GET_ALL();
     }
-
-    /**
-     * @param id_proprio the id_proprio to set
-     */
-    public void setId_proprio(int id_proprio) {
-        this.id_proprio = id_proprio;
-    }
-
-    /**
-     * @return the civilite
-     */
-    public String getCivilite() {
-        return civilite;
-    }
-
-    /**
-     * @param civilite the civilite to set
-     */
-    public void setCivilite(String civilite) {
-        this.civilite = civilite;
-    }
-
+    
     /**
      * @return the nom
      */
@@ -102,6 +109,20 @@ public class Proprietaire
      */
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    /**
+     * @return the civ
+     */
+    public String getCiv() {
+        return civ;
+    }
+
+    /**
+     * @param civ the civ to set
+     */
+    public void setCiv(String civ) {
+        this.civ = civ;
     }
 
     /**
@@ -203,31 +224,31 @@ public class Proprietaire
     }
 
     /**
-     * @return the email
+     * @return the mail1
      */
-    public String getEmail() {
-        return email;
+    public String getMail1() {
+        return mail1;
     }
 
     /**
-     * @param email the email to set
+     * @param mail1 the mail1 to set
      */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMail1(String mail1) {
+        this.mail1 = mail1;
     }
 
     /**
-     * @return the email2
+     * @return the mail2
      */
-    public String getEmail2() {
-        return email2;
+    public String getMail2() {
+        return mail2;
     }
 
     /**
-     * @param email2 the email2 to set
+     * @param mail2 the mail2 to set
      */
-    public void setEmail2(String email2) {
-        this.email2 = email2;
+    public void setMail2(String mail2) {
+        this.mail2 = mail2;
     }
 
     /**
@@ -245,30 +266,6 @@ public class Proprietaire
     }
 
     /**
-     * @return the portable
-     */
-    public String getPortable() {
-        return portable;
-    }
-    
-    public String getFullName()
-    {
-        return civilite + " " + nom + " " + prenom;
-    }
-    
-    public String getFullAdr()
-    {
-        return adresse1 + ", " + adresse2 + ", " + nip + ", " + ville; 
-    }
-
-    /**
-     * @param portable the portable to set
-     */
-    public void setPortable(String portable) {
-        this.portable = portable;
-    }
-
-    /**
      * @return the prive
      */
     public String getPrive() {
@@ -280,5 +277,47 @@ public class Proprietaire
      */
     public void setPrive(String prive) {
         this.prive = prive;
+    }
+
+    /**
+     * @return the portable
+     */
+    public String getPortable() {
+        return portable;
+    }
+
+    /**
+     * @param portable the portable to set
+     */
+    public void setPortable(String portable) {
+        this.portable = portable;
+    }
+
+    /**
+     * @return the id_proprio
+     */
+    public int getId_proprio() {
+        return id_proprio;
+    }
+
+    /**
+     * @param id_proprio the id_proprio to set
+     */
+    public void setId_proprio(int id_proprio) {
+        this.id_proprio = id_proprio;
+    }
+
+    /**
+     * @return the selectedproprio
+     */
+    public Proprietaire getSelectedproprio() {
+        return selectedproprio;
+    }
+
+    /**
+     * @param selectedproprio the selectedproprio to set
+     */
+    public void setSelectedproprio(Proprietaire selectedproprio) {
+        this.selectedproprio = selectedproprio;
     }
 }
