@@ -55,7 +55,7 @@ public class DAO_typeaeronef {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM typeaeronef WHERE id_type = ?";
+            String sql="SELECT * FROM typeaeronef";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

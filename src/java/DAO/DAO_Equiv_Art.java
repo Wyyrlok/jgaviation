@@ -54,7 +54,7 @@ public class DAO_Equiv_Art {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM equiv_art WHERE id_art = ?";
+            String sql="SELECT * FROM equiv_art";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

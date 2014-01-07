@@ -70,7 +70,7 @@ public class DAO_CN_Equipement {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM cn_equipement WHERE id_CN_Equipement = ?";
+            String sql="SELECT * FROM cn_equipement";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

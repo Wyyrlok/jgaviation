@@ -54,7 +54,7 @@ public class DAO_Profil_Utilisateur {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM profil_utilisateur WHERE id_profil = ?";
+            String sql="SELECT * FROM profil_utilisateur";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

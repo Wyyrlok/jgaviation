@@ -59,7 +59,7 @@ public class DAO_SuiviRep {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM suivirep WHERE id_SuiviRep = ?";
+            String sql="SELECT * FROM suivirep";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

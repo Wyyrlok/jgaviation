@@ -54,7 +54,7 @@ public class DAO_Constructeur {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM constructeur WHERE id_const = ?";
+            String sql="SELECT * FROM constructeur";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

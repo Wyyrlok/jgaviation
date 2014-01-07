@@ -59,7 +59,7 @@ public class DAO_Aeronef {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM aeronef WHERE immat = ?";
+            String sql="SELECT * FROM aeronef";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

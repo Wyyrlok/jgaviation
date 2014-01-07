@@ -60,7 +60,7 @@ public class DAO_Maintenance {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM maintenance WHERE id_Maintenance = ?";
+            String sql="SELECT * FROM maintenance";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

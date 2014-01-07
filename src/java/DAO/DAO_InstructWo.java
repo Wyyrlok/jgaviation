@@ -55,7 +55,7 @@ public class DAO_InstructWo {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM instructwo WHERE id_InstructWO = ?";
+            String sql="SELECT * FROM instructwo";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

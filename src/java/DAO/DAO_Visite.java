@@ -62,7 +62,7 @@ public class DAO_Visite {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM visite WHERE id_Visite = ?";
+            String sql="SELECT * FROM visite";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

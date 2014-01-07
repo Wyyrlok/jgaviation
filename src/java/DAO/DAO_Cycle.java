@@ -58,7 +58,7 @@ public class DAO_Cycle {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM cycle WHERE id_Cycle = ?";
+            String sql="SELECT * FROM cycle";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

@@ -54,7 +54,7 @@ public class DAO_Fournisseur {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM fournisseur WHERE id_fournisseur = ?";
+            String sql="SELECT * FROM fournisseur";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

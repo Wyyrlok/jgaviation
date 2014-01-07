@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="layout.html">
+        <ui:define name="myspecialcontent">
+            <p:fieldset legend="Fournisseur :">                 
+                <h:panelGrid columns="2" cellpadding="20">  
+                    <h:form>
+                        <p:dataTable id="fourni" var="fournisseur" value="#{fourni_beans.GET_LIST()}" style="width: 800px;margin-top: 30px;">  
+
+                            <p:column headerText="Id Fournisseur" style="width:50%">  
+                                <h:outputText value="#{fourn.getId_Fournisseur()}" />  
+                            </p:column>  
+
+                            <p:column headerText="Nom Fournisseur" style="width:50%">  
+                                <h:outputText value="#{fourn.getNom_fourn()}" />  
+                            </p:column>  
+
+
+                            <p:column style="width:4%">  
+                                <p:commandButton id="selectButton" image="someCssClassName" title="Ouvrir">  
+                                    <f:setPropertyActionListener value="#{fourn}" target="#{fourni_beans.selectedFourni}" />  
+                                </p:commandButton>  
+                            </p:column>  
+
+                        </p:dataTable>  
+                    </h:form>
+                </h:panelGrid>  
+            </p:fieldset>  
+        </ui:define>
+    </ui:composition>
+</html>

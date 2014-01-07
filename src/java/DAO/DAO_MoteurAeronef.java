@@ -56,7 +56,7 @@ public class DAO_MoteurAeronef {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM moteuraeronef WHERE id_moteur = ?";
+            String sql="SELECT * FROM moteuraeronef";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

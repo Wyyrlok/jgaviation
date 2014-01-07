@@ -55,7 +55,7 @@ public class DAO_Parametre {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM parametre WHERE sKey = ?";
+            String sql="SELECT * FROM parametre";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

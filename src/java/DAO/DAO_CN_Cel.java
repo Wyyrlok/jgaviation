@@ -68,7 +68,7 @@ public class DAO_CN_Cel {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM cn_cel WHERE id_CN_Cel = ?";
+            String sql="SELECT * FROM cn_cel";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

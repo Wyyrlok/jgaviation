@@ -63,7 +63,7 @@ public class DAO_ElmntMoteur {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM elmntmoteur WHERE id_elmnt = ?";
+            String sql="SELECT * FROM elmntmoteur";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

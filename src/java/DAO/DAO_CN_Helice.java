@@ -70,7 +70,7 @@ public class DAO_CN_Helice {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM cn_helice WHERE id_CN_Helice = ?";
+            String sql="SELECT * FROM cn_helice";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);

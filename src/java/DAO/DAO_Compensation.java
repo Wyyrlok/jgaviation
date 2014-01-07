@@ -65,7 +65,7 @@ public class DAO_Compensation {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM compensation WHERE id_compensation = ?";
+            String sql="SELECT * FROM compensation";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);
