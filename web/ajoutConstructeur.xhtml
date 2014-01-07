@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+        <ui:composition template="layout.html">
+            <ui:define name="myspecialcontent">
+                <p:fieldset legend="Ajout d'un nouveau constructeur : " style="font-size: x-large;">  
+                    <h:panelGrid columns="3" cellpadding="20">  
+                        <h:form>
+                            <table id="tblAjoutAvion">
+                                <tr style="height: 20px;"></tr>
+                                <tr>
+                                    <td id="colImage" width="80px">
+                                        <p:graphicImage value="/images/Icon-user.png" width="100px" />
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td style="width: 30px;"></td>
+                                                <td style="width: 200px;"> 
+                                                    <h:outputText value="Identifiant Constructeur :"/> 
+                                                </td>                                   
+                                                <td width="400px"> 
+                                                   <h:inputText id="idConst" required="true" requiredMessage="L'Identifiant Constructeur est obligatoire" value="#{construct_beans.id_const}" styleClass="ui-textinput" /> 
+                                                    <p:message for="idConst" display="text" />           
+                                                </td> 
+                                            </tr>
+                                       
+                                            <tr style="height: 5px;"></tr>
+                                            <tr> 
+                                                <td></td>
+                                                <td> 
+                                                    <h:outputText value="Nom Constructeur :"/> 
+                                                </td> 
+                                                <td width="400px"> 
+                                                    <h:inputText id="nomConst" required="true" requiredMessage="Le Nom du Constructeur est obligatoire" value="#{construct_beans.nom_const}" styleClass="ui-textinput" /> 
+                                                    <p:message for="nomConst" display="text" />    
+                                                </td> 
+                                            </tr>                                            
+                                            
+                                            <tr> 
+                                                <td></td>
+                                                <td colspan="2" id="cmdAjout">  
+                                                    <h:commandButton type="submit" value="Enregistrer" style="margin-top: 15px" action="#{construct_beans.AddConstructeur}"></h:commandButton>
+                                                </td>  
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h:form>
+                    </h:panelGrid>  
+                </p:fieldset>  
+            </ui:define>
+        </ui:composition>
+</html>
