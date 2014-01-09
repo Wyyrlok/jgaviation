@@ -9,15 +9,12 @@
     <ui:composition template="layout.html">
         <ui:define name="myspecialcontent">
             <p:fieldset legend="Fournisseur :">                 
-                <h:panelGrid columns="2" cellpadding="20">  
+                <h:panelGrid columns="1" cellpadding="20">  
                     <h:form>
                         <p:dataTable id="fourni" var="fournisseur" value="#{fourni_beans.GET_LIST()}" style="width: 800px;margin-top: 30px;">  
 
-                            <p:column headerText="Id Fournisseur" style="width:50%">  
-                                <h:outputText value="#{fourn.getId_Fournisseur()}" />  
-                            </p:column>  
 
-                            <p:column headerText="Nom Fournisseur" style="width:50%">  
+                            <p:column headerText="Nom Fournisseur" style="width:100%">  
                                 <h:outputText value="#{fourn.getNom_fourn()}" />  
                             </p:column>  
 

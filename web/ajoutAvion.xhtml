@@ -19,37 +19,41 @@
                                     <td rowspan="8" witdh="50px"></td>
 
                                     <td class="colMiddle"> 
-                                        <h:outputText value="Marque :"/> 
+                                        <h:outputText value="Immatriculation :"/> 
                                     </td> 
                                     <td> 
-                                        <p:inputText id="marqueAvion"/> 
+                                    <p:inputText id="marqueAvion" required="true" requiredMessage="La Marque de l'aeronef est obligatoire" value="#{aeronef_beans.immat}" styleClass="ui-textinput"/>
+                                    <p:message for='marqueAvion' display="text"/>
                                     </td> 
                                 </tr>
 
                                 <tr style="margin-left: 60px;"> 
                                     <td> 
-                                        <h:outputText value="Modele :"/> 
+                                        <h:outputText value="Constructeur :"/> 
                                     </td> 
                                     <td width="400px"> 
-                                        <p:inputText id="modeleAvion"/> 
+                                        <p:inputText id="constructAvion" required="true" requiredMessage="Le Constructeur de l'aeronef est obligatoire" value="#{aeronef_beans.id_const}" styleClass="ui-textinput"/>
+                                        <p:message for='constructAvion' display="text"/>
                                     </td> 
                                 </tr>
 
                                 <tr> 
                                     <td> 
-                                        <h:outputText value="Construction :"/> 
+                                        <h:outputText value="Date de Construction :"/> 
                                     </td> 
                                     <td> 
-                                        <p:inputMask id="constructionAvion" mask="99/99/9999"/> 
+                                    <p:inputMask mask="99/99/9999" id="dateConstAero" value="#{aeronef_beans.date_const}" styleClass="ui-textinput"/>
+                                    <p:message for='dateConstAero' display="text"/>
                                     </td>
                                 </tr>
 
                                 <tr> 
                                     <td> 
-                                        <h:outputText value="Immatriculation :"/> 
+                                        <h:outputText value="Numéro de Série :"/> 
                                     </td> 
-                                    <td> 
-                                        <p:inputText id="immatriculationAvion"/> 
+                                    <td width="400px"> 
+                                        <p:inputText id="numSerieAero" required="true" requiredMessage="Le numéro de série de l'aeronef est obligatoire" value="#{aeronef_beans.serial_nb}" styleClass="ui-textinput"/>
+                                        <p:message for='numSerieAero' display="text"/>
                                     </td> 
                                 </tr>
 

@@ -9,15 +9,13 @@
     <ui:composition template="layout.html">
         <ui:define name="myspecialcontent">
             <p:fieldset legend="Constructeur :">                 
-                <h:panelGrid columns="2" cellpadding="20">  
+                <h:panelGrid columns="1" cellpadding="20">  
                     <h:form>
                         <p:dataTable id="construct" var="constructeur" value="#{construct_beans.GET_LIST()}" style="width: 800px;margin-top: 30px;">  
 
-                            <p:column headerText="Id Constructeur" style="width:50%">  
-                                <h:outputText value="#{construct.getId_const()}" />  
-                            </p:column>  
+                          
 
-                            <p:column headerText="Nom Constructeur" style="width:50%">  
+                            <p:column headerText="Nom Constructeur" style="width:100%">  
                                 <h:outputText value="#{construct.getNom_const()}" />  
                             </p:column>  
 

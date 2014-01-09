@@ -6,190 +6,190 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 
-        <ui:composition template="layout.html">
-            <ui:define name="myspecialcontent">
-                <p:fieldset legend="Ajout d'un nouveau propriétaire : " style="font-size: x-large;">  
-                    <h:panelGrid columns="3" cellpadding="20">  
-                        <h:form>
-                            <table id="tblAjoutAvion">
-                                <tr style="height: 20px;"></tr>
-                                <tr>
-                                    <td id="colImage" width="80px">
-                                        <p:graphicImage value="/images/Icon-user.png" width="100px" />
-                                    </td>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td style="width: 30px;"></td>
-                                                <td style="width: 100px;"> 
-                                                    <h:outputText value="Civilité :"/> 
-                                                </td> 
-                                                <td> 
-                                                <h:selectOneMenu id="civilit" value="#{proprio_beans.civ}">  
-                                                    <f:selectItem itemLabel="Mr" itemValue="Mr" />  
-                                                        <f:selectItem itemLabel="Mme" itemValue="Mme" /> 
-                                                        <f:selectItem itemLabel="Mlle" itemValue="Mlle" />  
-                                                    </h:selectOneMenu> 
-                                                </td> 
-                                            </tr>
-                                       
-                                            <tr style="height: 5px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td> 
-                                                    <h:outputText value="Nom :"/> 
-                                                </td> 
-                                                <td width="400px"> 
-                                                    <h:inputText id="snom" required="true" requiredMessage="Le nom est obligatoire" value="#{proprio_beans.nom}" styleClass="ui-textinput" /> 
-                                                    <p:message for="snom" display="text" />
-                                                </td> 
-                                            </tr>                                            
-                                            <tr style="height: 5px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td> 
-                                                    <h:outputText value="Prénom :"/> 
-                                                </td> 
-                                                <td> 
-                                                    <h:inputText id="sprenom" required="true" value="#{proprio_beans.prenom}" styleClass="ui-textinput"/> 
-                                                </td> 
-                                            </tr>
-     
+    <ui:composition template="layout.html">
+        <ui:define name="myspecialcontent">
+            <p:fieldset legend="Ajout d'un nouveau propriétaire : " style="font-size: x-large;">  
+                <h:panelGrid columns="3" cellpadding="20">  
+                    <h:form>
+                        <table id="tblAjoutAvion">
+                            <tr style="height: 20px;"></tr>
+                            <tr>
+                                <td id="colImage" width="80px">
+                            <p:graphicImage value="/images/Icon-user.png" width="100px" />
+                            </td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td style="width: 30px;"></td>
+                                        <td style="width: 100px;"> 
+                                    <h:outputText value="Civilité :"/> 
+                            </td> 
+                            <td> 
+                            <h:selectOneMenu id="civilit" value="#{proprio_beans.civ}">  
+                                <f:selectItem itemLabel="Mr" itemValue="Mr" />  
+                                <f:selectItem itemLabel="Mme" itemValue="Mme" /> 
+                                <f:selectItem itemLabel="Mlle" itemValue="Mlle" />  
+                            </h:selectOneMenu> 
+                            </td> 
+                            </tr>
 
-                                            <tr style="height: 25px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td> 
-                                                    <h:outputText value="Société :"/> 
-                                                </td> 
-                                                <td> 
-                                                    <h:inputText id="societe" value="#{proprio_beans.societe}" styleClass="ui-textinput"/> 
-                                                </td> 
-                                            </tr>
-                                            <tr style="height: 5px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td> 
-                                                    <h:outputText value="Adresse :"/>  
-                                                </td> 
-                                                <td>
-                                                    <h:inputText id="adr1" required="true" value="#{proprio_beans.adresse1}" styleClass="ui-textinput" />
-                                                </td>
-                                            </tr>
-                                            <tr style="height: 5px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td> 
-                                                    <h:outputText value=""/>  
-                                                </td> 
-                                                <td>
-                                                    <h:inputText id="adr2" value="#{proprio_beans.adresse2}" styleClass="ui-textinput" />
-                                                </td>
-                                            </tr>
-                                            <tr style="height: 5px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td> 
-                                                    <h:outputText value="Ville :"/>  
-                                                </td> 
-                                                <td>
-                                                    <h:inputText id="ville" required="true" requiredMessage="La ville est obligatoire" value="#{proprio_beans.ville}" styleClass="ui-textinput" />
-                                                </td>
-                                            </tr>
-                                            <tr style="height: 5px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td> 
-                                                    <h:outputText value="NIP :"/>  
-                                                </td> 
-                                                <td>
-                                                    <h:inputText id="nip" required="true" value="#{proprio_beans.nip}" styleClass="ui-textinput" />
-                                                </td>
-                                            </tr>
-                                            <tr style="height: 25px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td> 
-                                                    <h:outputText value="Téléphone 1 :"/>  
-                                                </td> 
-                                                <td>
-                                                    <h:inputText id="tel1" value="#{proprio_beans.tel1}" styleClass="ui-textinput" />
-                                                </td>
-                                            </tr>
-                                            <tr style="height: 5px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td> 
-                                                    <h:outputText value="Téléphone 2 :"/>  
-                                                </td> 
-                                                <td>
-                                                    <h:inputText id="tel2" value="#{proprio_beans.tel2}" styleClass="ui-textinput" />
-                                                </td>
-                                            </tr>
-                                            <tr style="height: 5px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td> 
-                                                    <h:outputText value="Email 1 :"/>  
-                                                </td> 
-                                                <td>
-                                                    <h:inputText id="mail1" value="#{proprio_beans.mail1}" styleClass="ui-textinput" />
-                                                </td>
-                                            </tr>
-                                            <tr style="height: 5px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td> 
-                                                    <h:outputText value="Email 2 :"/>  
-                                                </td> 
-                                                <td>
-                                                    <h:inputText id="mail2" value="#{proprio_beans.mail2}" styleClass="ui-textinput" />
-                                                </td>
-                                            </tr>
-                                            <tr style="height: 5px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td> 
-                                                    <h:outputText value="Fax :"/>  
-                                                </td> 
-                                                <td>
-                                                    <h:inputText id="fax" value="#{proprio_beans.fax}" styleClass="ui-textinput" />
-                                                </td>
-                                            </tr>
-                                            <tr style="height: 5px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td> 
-                                                    <h:outputText value="Portable :"/>  
-                                                </td> 
-                                                <td>
-                                                    <h:inputText id="port" value="#{proprio_beans.portable}" styleClass="ui-textinput" />
-                                                </td>
-                                            </tr>
-                                            <tr style="height: 5px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td> 
-                                                    <h:outputText value="Privé :"/>  
-                                                </td> 
-                                                <td>
-                                                    <h:inputText id="priv" value="#{proprio_beans.prive}" styleClass="ui-textinput" />
-                                                </td>
-                                            </tr>                                           
-                                            <tr style="height: 25px;"></tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td colspan="2" id="cmdAjout">  
-                                                    <h:commandButton type="submit" value="Enregistrer" style="margin-top: 15px" action="#{proprio_beans.addProprio}"></h:commandButton>
-                                                </td>  
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </h:form>
-                    </h:panelGrid>  
-                </p:fieldset>  
-            </ui:define>
-        </ui:composition>
+                            <tr style="height: 5px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Nom :"/> 
+                            </td> 
+                            <td width="400px"> 
+                            <h:inputText id="snom" required="true" requiredMessage="Le nom est obligatoire" value="#{proprio_beans.nom}" styleClass="ui-textinput" /> 
+                            <p:message for="snom" display="text" />
+                            </td> 
+                            </tr>                                            
+                            <tr style="height: 5px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Prénom :"/> 
+                            </td> 
+                            <td> 
+                            <h:inputText id="sprenom" required="true" value="#{proprio_beans.prenom}" styleClass="ui-textinput"/> 
+                            </td> 
+                            </tr>
+
+
+                            <tr style="height: 25px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Société :"/> 
+                            </td> 
+                            <td> 
+                            <h:inputText id="societe" value="#{proprio_beans.societe}" styleClass="ui-textinput"/> 
+                            </td> 
+                            </tr>
+                            <tr style="height: 5px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Adresse :"/>  
+                            </td> 
+                            <td>
+                            <h:inputText id="adr1" required="true" value="#{proprio_beans.adresse1}" styleClass="ui-textinput" />
+                            </td>
+                            </tr>
+                            <tr style="height: 5px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value=""/>  
+                            </td> 
+                            <td>
+                            <h:inputText id="adr2" value="#{proprio_beans.adresse2}" styleClass="ui-textinput" />
+                            </td>
+                            </tr>
+                            <tr style="height: 5px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Ville :"/>  
+                            </td> 
+                            <td>
+                            <h:inputText id="ville" required="true" requiredMessage="La ville est obligatoire" value="#{proprio_beans.ville}" styleClass="ui-textinput" />
+                            </td>
+                            </tr>
+                            <tr style="height: 5px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="NIP :"/>  
+                            </td> 
+                            <td>
+                            <h:inputText id="nip" required="true" value="#{proprio_beans.nip}" styleClass="ui-textinput" />
+                            </td>
+                            </tr>
+                            <tr style="height: 25px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Téléphone 1 :"/>  
+                            </td> 
+                            <td>
+                            <h:inputText id="tel1" value="#{proprio_beans.tel1}" styleClass="ui-textinput" />
+                            </td>
+                            </tr>
+                            <tr style="height: 5px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Téléphone 2 :"/>  
+                            </td> 
+                            <td>
+                            <h:inputText id="tel2" value="#{proprio_beans.tel2}" styleClass="ui-textinput" />
+                            </td>
+                            </tr>
+                            <tr style="height: 5px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Email 1 :"/>  
+                            </td> 
+                            <td>
+                            <h:inputText id="mail1" value="#{proprio_beans.mail1}" styleClass="ui-textinput" />
+                            </td>
+                            </tr>
+                            <tr style="height: 5px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Email 2 :"/>  
+                            </td> 
+                            <td>
+                            <h:inputText id="mail2" value="#{proprio_beans.mail2}" styleClass="ui-textinput" />
+                            </td>
+                            </tr>
+                            <tr style="height: 5px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Fax :"/>  
+                            </td> 
+                            <td>
+                            <h:inputText id="fax" value="#{proprio_beans.fax}" styleClass="ui-textinput" />
+                            </td>
+                            </tr>
+                            <tr style="height: 5px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Portable :"/>  
+                            </td> 
+                            <td>
+                            <h:inputText id="port" value="#{proprio_beans.portable}" styleClass="ui-textinput" />
+                            </td>
+                            </tr>
+                            <tr style="height: 5px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Privé :"/>  
+                            </td> 
+                            <td>
+                            <h:inputText id="priv" value="#{proprio_beans.prive}" styleClass="ui-textinput" />
+                            </td>
+                            </tr>                                           
+                            <tr style="height: 25px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td colspan="2" id="cmdAjout">  
+                            <h:commandButton type="submit" value="Enregistrer" style="margin-top: 15px" action="#{proprio_beans.addProprio}"></h:commandButton>
+                            </td>  
+                            </tr>
+                        </table>
+                        </td>
+                        </tr>
+                        </table>
+                    </h:form>
+                </h:panelGrid>  
+            </p:fieldset>  
+        </ui:define>
+    </ui:composition>
 </html>
