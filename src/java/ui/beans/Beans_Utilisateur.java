@@ -6,9 +6,16 @@
 
 package ui.beans;
 
+import Metier.Profil_Utilisateur;
 import Metier.Utilisateur;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -16,12 +23,18 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name="user_beans")
 @SessionScoped()
-public class Beans_Utilisateur 
+public class Beans_Utilisateur implements Serializable
 {
+    
+    
     private Utilisateur user;
     private String sLogin;
     private String sPassword;
+    
+   
+   
 
+    
     public String Connexion()
     {
         String sRet = "";
@@ -94,4 +107,5 @@ public class Beans_Utilisateur
     public void setsPassword(String sPassword) {
         this.sPassword = sPassword;
     }
+
 }

@@ -31,10 +31,7 @@ public class Beans_Constructeur implements Serializable {
     public String AddConstructeur() throws Exception {
 
         Constructeur construct = new Constructeur();
-        construct.setId_const(getId_const());
         construct.setNom_const(getNom_const());
-
-
 
         int add = new DAO.DAO_Constructeur().CREATE(construct);
         if (add != 0) {

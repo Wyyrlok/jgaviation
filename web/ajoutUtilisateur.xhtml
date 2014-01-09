@@ -8,91 +8,42 @@
 
         <ui:composition template="layout.html">
             <ui:define name="myspecialcontent">
-                <p:fieldset legend="Ajout d'utilisateur" style="font-size: x-large;">  
+                <p:fieldset legend="Ajout d'utilisateur :" style="font-size: x-large;">  
                     <h:panelGrid columns="3" cellpadding="20">  
                         <h:form>
                             <table id="tblAjoutAvion">
-                                <tr style="height: 10px;"></tr>
+                                <tr style="height: 20px;"></tr>
                                 <tr>
-                                    <td id="colImage" width="80px" rowspan="5">
+                                    <td id="colImage" width="80px">
                                         <p:graphicImage value="/images/Icon-user.png" width="100px" />
                                     </td>
-
-                                    <td class="colMiddle"> 
-                                        <h:outputText value="Prénom :"/> 
-                                    </td> 
-                                    <td> 
-                                        <p:inputText id="sprenom"/> 
-                                    </td> 
-                                </tr>
-                                <tr style="height: 7px;"></tr>
-                                <tr> 
-                                    
-                                    <td> 
-                                        <h:outputText value="Nom :"/> 
-                                    </td> 
-                                    <td width="400px"> 
-                                        <p:inputText id="snom"/> 
-                                    </td> 
-                                </tr>
-                                <tr style="height: 7px;"></tr>
-                                <tr> 
-                                    
-                                    <td> 
-                                        <h:outputText value="Profil :"/> 
-                                    </td> 
-                                    <td> 
-                                        <h:selectOneMenu value="profil">  
-                                            <f:selectItem itemLabel="Admin" id="admin" />  
-                                            <f:selectItem itemLabel="Mécanicien" id="meca" />  
-                                        </h:selectOneMenu> 
-                                    </td>
-                                </tr>
-                                <tr style="height: 7px;"></tr>
-                                <tr> 
-                                    <td></td>
-                                    <td> 
-                                        <h:outputText value="Login :"/> 
-                                    </td> 
-                                    <td> 
-                                        <p:inputText id="slogin"/> 
-                                    </td> 
-                                </tr>
-                                <tr style="height: 7px;"></tr>
-                                <tr> 
-                                    <td></td>
-                                    <td> 
-                                        <h:outputText value="Mot de passe :"/>  
-                                    </td> 
                                     <td>
-                                        <h:inputSecret id="password" ></h:inputSecret>
+                                        <table>
+ 
+           
+                                            <tr> 
+                                                <td></td>
+                                                <td> 
+                                                    <h:outputText value="Confirmation du mot de passe :"/>  
+                                                </td> 
+                                                <td>
+                                                    <h:inputText id="mdp2" value="#{util_beans.add_pwd2}" ></h:inputText>
+                                                </td>
+                                            </tr>
+                                            <tr style="height: 25px;"></tr>
+                                            <tr> 
+                                                <td></td>
+                                                <td colspan="2" id="cmdAjout">  
+                                                    <h:commandButton type="submit"  value="Enregistrer" style="margin-top: 15px" action="#{util_beans.addUser}"></h:commandButton>
+                                                </td> 
+                                            </tr>
+                                        </table>
                                     </td>
                                 </tr>
-                                <tr style="height: 7px;"></tr>
-                                <tr> 
-                                    <td></td>
-                                    <td> 
-                                        <h:outputText value="Confirmation du mot de passe :"/>  
-                                    </td> 
-                                    <td>
-                                        <h:inputSecret id="passwordconfirm" ></h:inputSecret>
-                                    </td>
-                                </tr>
-                                <tr style="height: 7px;"></tr>
-                                <tr> 
-                                    <td></td>
-                                    <td colspan="2" id="cmdAjout">  
-                                        <input type="button" id="AjoutUser" value="Enregistrer"/>  
-                                    </td>  
-                                </tr>
-
                             </table>
-
                         </h:form>
                     </h:panelGrid>  
                 </p:fieldset>  
-
-
             </ui:define>
         </ui:composition>
 </html>
