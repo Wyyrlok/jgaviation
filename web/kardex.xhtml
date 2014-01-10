@@ -6,59 +6,93 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 
-    <head>
+    <ui:composition template="layout.xhtml">
+        <ui:define name="myspecialcontent">
+            <p:tabView id="tabView">
 
-    <f:facet name="first">
-        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-        <title>Template JGA</title>
-    </f:facet>
+                <p:tab id="tab1" title="Saisie">  
+                    
+                    <h:outputText value="loool"/>                   
+                                        
+                </p:tab> 
 
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="styles/kardex.css" media="all" />
+                <p:tab id="tab2" title="Heures de vol">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <p:graphicImage id="tab2Img" value="/images/godfather/godfather2.jpg" />  
+                        <h:outputText id="tab2Text" value="Heures de vol"/>  
+                    </h:panelGrid>  
+                </p:tab>  
 
-</head>
-<body>
-<ui:composition template="layout.html">
-    <ui:define name="myspecialcontent">
-        <title> KARDEX </title>
-        <div class="popup">
+                <p:tab id="tab3" title="Inventaire">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <p:graphicImage id="tab3Img" value="/images/godfather/godfather3.jpg" />  
+                        <h:outputText id="tab3Text" value="inventaire"/>  
+                    </h:panelGrid>  
+                </p:tab>
 
-            <table class="popup">
+                <p:tab id="tab3" title="Visites">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <p:graphicImage id="tab3Img" value="/images/godfather/godfather3.jpg" />  
+                        <h:outputText id="tab3Text" value="visite"/>  
+                    </h:panelGrid>  
+                </p:tab> 
 
-                <tr><th id="title" colspan="3">Accueil KARDEX</th></tr>
-                <tr>
-                    <th colspan="3">   
-                        <p align="left">Bienvenue dans le KARDEX, ici vous pourrez: <br/>
-                            <br/> Dans l'onglet Liste Avion : Consulter la liste de 
-                            tous les avions, obtenir plus de renseignement en cliquant
-                            dessus. Il vous est également possible par cette action
-                            de modifier les informations concernants les avions. <br/>
+                <p:tab id="tab3" title="CN CEL">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <p:graphicImage id="tab3Img" value="/images/godfather/godfather3.jpg" />  
+                        <h:outputText id="tab3Text" value="CN CEL"/>  
+                    </h:panelGrid>  
+                </p:tab> 
+                <p:tab id="tab3" title="CN MOT">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <p:graphicImage id="tab3Img" value="/images/godfather/godfather3.jpg" />  
+                        <h:outputText id="tab3Text" value="CN MOT"/>  
+                    </h:panelGrid>  
+                </p:tab> 
 
-                            Dans l'onglet Ajout Avion : Ajouter un nouvel avion <br/>
+                <p:tab id="tab3" title="CN HEL">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <p:graphicImage id="tab3Img" value="/images/godfather/godfather3.jpg" />  
+                        <h:outputText id="tab3Text" value="CN HEL"/>  
+                    </h:panelGrid>  
+                </p:tab> 
 
-                            Dans l'onglet Suppromer un Avion : Suppromer un ancien avion<br/>
-                            <br/></p>
+                <p:tab id="tab3" title="CN ETQS">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <p:graphicImage id="tab3Img" value="/images/godfather/godfather3.jpg" />  
+                        <h:outputText id="tab3Text" value="CN ETQS"/>  
+                    </h:panelGrid>  
+                </p:tab> 
 
-                    </th>
-                </tr>
-                <tr>
+                <p:tab id="tab3" title="PVL">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <p:graphicImage id="tab3Img" value="/images/godfather/godfather3.jpg" />  
+                        <h:outputText id="tab3Text" value="PVL"/>  
+                    </h:panelGrid>  
+                </p:tab>   
+
+                <p:tab id="tab3" title="MOD REP">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <p:graphicImage id="tab3Img" value="/images/godfather/godfather3.jpg" />  
+                        <h:outputText id="tab3Text" value="MOD REP"/>  
+                    </h:panelGrid>  
+                </p:tab>
+
+                <p:tab id="tab3" title="CRS 1">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <p:graphicImage id="tab3Img" value="/images/godfather/godfather3.jpg" />  
+                        <h:outputText id="tab3Text" value="CRS 1"/>  
+                    </h:panelGrid>  
+                </p:tab>
+
+                <p:tab id="tab3" title="CRS 4">  
+                    <h:panelGrid columns="2" cellpadding="10">  
+                        <p:graphicImage id="tab3Img" value="/images/godfather/godfather3.jpg" />  
+                        <h:outputText id="tab3Text" value="CRS 4"/>  
+                    </h:panelGrid>  
+                </p:tab>
                 
-                    <th><form method="link" action="listeAvion.xhtml"> <input type="submit" value="Liste Avion"/></form></th>
-                    <th><form method="link" action="ajoutAvion.xhtml"> <input type="submit" value="Ajouter Avion"/></form></th>
-                    <th><form method="link" action="kardex.xhtml"> <input type="submit" value="Supprimer Avion"/></form></th>
-
-
-
-                </tr>
-                
-            </table>
-
-        </div>
-
-
-
-
-    </ui:define>
-</ui:composition>
-</body>
+        </p:tabView>
+        </ui:define>
+    </ui:composition>
 </html>
