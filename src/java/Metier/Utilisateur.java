@@ -22,6 +22,11 @@ public class Utilisateur
     private boolean bLocked;
     private int retCnx;
 
+    public String getFullName()
+    {
+        return sNom + " " + sPrenom;
+    }
+    
     /**
      * @return the id_Personnel
      */

@@ -7,6 +7,7 @@
 package ui.beans;
 
 import Metier.Profil_Utilisateur;
+import Metier.Proprietaire;
 import Metier.Utilisateur;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -74,6 +75,11 @@ public class Beans_Util implements Serializable
             addMessage(new FacesMessage(FacesMessage.SEVERITY_WARN, "Information : ", "Les mots de passe ne correspondent pas!"));
             return ""; 
         }
+    }
+    
+    public List<Utilisateur> GET_LIST()
+    {
+        return new DAO.DAO_Utilisateur().GET_ALL();
     }
     
     private void addMessage(FacesMessage message)

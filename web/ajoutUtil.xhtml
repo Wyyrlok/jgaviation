@@ -6,7 +6,7 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 
-        <ui:composition template="layout.html">
+        <ui:composition template="layout.xhtml">
             <ui:define name="myspecialcontent">
                 <p:fieldset legend="Ajout d'un nouveau propriétaire : " style="font-size: x-large;">  
                     <h:panelGrid columns="3" cellpadding="20">  
@@ -50,10 +50,10 @@
                                                 </td> 
                                                 <td> 
                                                     <h:selectOneMenu id="proflst" value="#{util_beans.add_selecteditem}"> 
-                                                        <f:selectItem itemLabel="Administrateur" itemValue="1" /> 
+                                                        <!--<f:selectItem itemLabel="Administrateur" itemValue="1" /> 
                                                         <f:selectItem itemLabel="Mécanique" itemValue="2" /> 
-                                                        <!--<f:selectItems value="#{util_beans.listeCategoriesItem}" />-->
-                                                        
+                                                        -->
+                                                        <f:selectItems value="#{util_beans.listeCategoriesItem}" />
                                                     </h:selectOneMenu> 
                                                 </td> 
                                             </tr>

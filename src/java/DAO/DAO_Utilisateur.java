@@ -72,6 +72,7 @@ public class DAO_Utilisateur
                 b.setId_Personnel(rs.getInt("id_Personnel"));
                 b.setsPrenom(rs.getString("sPrenom"));
                 b.setsNom(rs.getString("sNom"));
+                b.setsLogin(rs.getString("sLogin"));
                 b.setId_profil(rs.getInt("id_profil"));
                 b.setsPassword(rs.getString("sPassword"));                
                 b.setNbErr(rs.getInt("nbErr"));

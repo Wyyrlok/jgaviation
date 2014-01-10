@@ -60,7 +60,7 @@ public class TableBean implements Serializable {
     public TableBean() {  
         cars = new ArrayList<Car>();  
           
-        populateRandomCars(cars, 100);  
+        //populateRandomCars(cars, 100);  
     }  
   
     public Car getSelectedCar() {  
