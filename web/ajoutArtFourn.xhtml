@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="layout.html">
+        <ui:define name="myspecialcontent">
+            <p:fieldset legend="Ajout d'un nouvel article : " style="font-size: x-large;">  
+                <h:panelGrid columns="3" cellpadding="20">  
+                    <h:form>
+                        <table id="tblAjoutAvion">
+                            <tr style="height: 20px;"></tr>
+                            <tr>
+                                <td id="colImage" width="80px">
+                            <p:graphicImage value="/images/Icon-user.png" width="100px" />
+                            </td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td style="width: 30px;"></td>
+                                        <td style="width: 100px;"> 
+                                    <h:outputText value="Désignation :"/> 
+                            </td> 
+                            <td> 
+                            <h:inputText id="design" required="true" requiredMessage="Le nom de l'article est obligatoire" value="#{article_beans.designation}" styleClass="ui-textinput" /> 
+                            <p:message for="design" display="text" />
+                            </td> 
+                            </tr>
+                            <tr style="height: 25px;"></tr>
+
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Part nb:"/> 
+                            </td> 
+                            <td width="400px"> 
+                            <h:inputText id="partNbConst" required="true" requiredMessage="Le part nb const est obligatoire" value="#{article_beans.part_nb_const}" styleClass="ui-textinput" /> 
+                            <p:message for="partNbConst" display="text" />
+                            </td> 
+                            </tr>                                            
+                            <tr style="height: 5px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Constructeur :"/> 
+                            </td> 
+                            <td> 
+                            <h:selectOneMenu id="constArt" value="#{article_beans.selectedConstrItem}"> 
+                                            <f:selectItems value="#{article_beans.listeConstrItem}" />
+                                        </h:selectOneMenu> 
+                            </td> 
+                            </tr>
+
+
+                            <tr style="height: 25px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Prix de Vente Article :"/> 
+                            </td> 
+                            <td> 
+                            <h:inputText id="prxVteArt" required="false" value="#{article_beans.prix_vte_article}" styleClass="ui-textinput" /> 
+                            </td> 
+                            </tr>
+                            <tr style="height: 25px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Date de prémption :"/> 
+                            </td> 
+                            <td> 
+                            <h:selectOneMenu id="bperemp" value="#{article_beans.bPeremption}">  
+                                <f:selectItem itemLabel="Non" itemValue="0" />  
+                                <f:selectItem itemLabel="Oui" itemValue="1" /> 
+                            </h:selectOneMenu> 
+                            </td> 
+                            </tr>
+                            <tr style="height: 25px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Numéro de série :"/> 
+                            </td> 
+                            <td> 
+                            <h:selectOneMenu id="nbSerie" value="#{article_beans.bSerialNb}">  
+                                <f:selectItem itemLabel="Non" itemValue="0" />  
+                                <f:selectItem itemLabel="Oui" itemValue="1" /> 
+                            </h:selectOneMenu> 
+                            </td> 
+                            </tr>
+                            <tr style="height: 25px;"></tr>
+                            <tr> 
+                                <td></td>
+                                <td> 
+                            <h:outputText value="Stock Article minimum :"/> 
+                            </td> 
+                            <td> 
+                            <h:inputText id="stckArtMini" required="true" requiredMessage="Le stock minimum est obligatoire" value="#{article_beans.stock_mini}" styleClass="ui-textinput" />
+                            <p:message for="stckArtMini" display="text" />
+                            </td> 
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="2" id="cmdAjout">  
+                            <h:commandButton type="submit" value="Enregistrer" style="margin-top: 15px" action="#{article_beans.addArticle}"></h:commandButton>
+                            </td>  
+                            </tr>
+                        </table>
+                        </td>
+                        </tr>
+                        </table>
+                    </h:form>
+                </h:panelGrid>  
+            </p:fieldset>  
+        </ui:define>
+    </ui:composition>
+</html>
