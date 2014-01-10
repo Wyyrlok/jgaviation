@@ -97,7 +97,8 @@
                             <h:outputText value="Stock Article minimum :"/> 
                             </td> 
                             <td> 
-                            <h:inputText id="stckArtMini" required="false" value="#{article_beans.stock_mini}" styleClass="ui-textinput" /> 
+                            <h:inputText id="stckArtMini" required="true" requiredMessage="Le stock minimum est obligatoire" value="#{article_beans.stock_mini}" styleClass="ui-textinput" />
+                            <p:message for="stckArtMini" display="text" />
                             </td> 
                             </tr>
                             <tr>

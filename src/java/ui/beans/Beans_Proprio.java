@@ -8,11 +8,13 @@ package ui.beans;
 
 import Metier.Proprietaire;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -22,6 +24,9 @@ import javax.faces.context.FacesContext;
 @SessionScoped()
 public class Beans_Proprio implements Serializable
 {
+    private List<SelectItem> listePropriosItem;
+    private String selectedProprioItem;
+    
     private Proprietaire selectedproprio;
     
     private String nom;
@@ -41,6 +46,16 @@ public class Beans_Proprio implements Serializable
     private String portable;
     private int id_proprio;
 
+    public Beans_Proprio()
+    {
+        listePropriosItem = new ArrayList<SelectItem>();
+        List<Proprietaire> proprioList = new DAO.DAO_Proprietaire().GET_ALL();
+        for(Proprietaire proprio: proprioList)
+        {
+            listePropriosItem.add(new SelectItem(proprio.getId_proprio(), (proprio.getNom()+" " + proprio.getPrenom())));
+        }
+    }
+    
     private void addMessage(FacesMessage message)
     {
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -319,5 +334,33 @@ public class Beans_Proprio implements Serializable
      */
     public void setSelectedproprio(Proprietaire selectedproprio) {
         this.selectedproprio = selectedproprio;
+    }
+
+    /**
+     * @return the listePropriosItem
+     */
+    public List<SelectItem> getListePropriosItem() {
+        return listePropriosItem;
+    }
+
+    /**
+     * @param listePropriosItem the listePropriosItem to set
+     */
+    public void setListePropriosItem(List<SelectItem> listePropriosItem) {
+        this.listePropriosItem = listePropriosItem;
+    }
+
+    /**
+     * @return the selectedProprioItem
+     */
+    public String getSelectedProprioItem() {
+        return selectedProprioItem;
+    }
+
+    /**
+     * @param selectedProprioItem the selectedProprioItem to set
+     */
+    public void setSelectedProprioItem(String selectedProprioItem) {
+        this.selectedProprioItem = selectedProprioItem;
     }
 }

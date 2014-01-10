@@ -8,21 +8,18 @@
 
     <ui:composition template="layout.html">
         <ui:define name="myspecialcontent">
-            <p:fieldset legend="Constructeur :">                 
+            <p:fieldset legend="Article :">                 
                 <h:panelGrid columns="1" cellpadding="20">  
                     <h:form>
-                        <p:dataTable id="construct" var="constructeur" value="#{construct_beans.GET_LIST()}" style="width: 800px;margin-top: 30px;">  
+                        <p:dataTable id="proprios" var="proprio" value="#{article.GET_LIST()}" style="width: 800px;margin-top: 96px;">  
 
-                          
-
-                            <p:column headerText="Nom Constructeur" style="width:100%">  
-                                <h:outputText value="#{construct.getNomConstr()}" />  
+                            <p:column headerText="Désignation" style="width:30%">  
+                                <h:outputText value="#{article.getDesignation()}" />  
                             </p:column>  
-
-
+                            
                             <p:column style="width:4%">  
                                 <p:commandButton id="selectButton" image="someCssClassName" title="Ouvrir">  
-                                    <f:setPropertyActionListener value="#{construct}" target="#{construct_beans.selectedConstruct}" />  
+                                    <f:setPropertyActionListener value="#{article}" target="#{article_beans.selectedArt}" />  
                                 </p:commandButton>  
                             </p:column>  
 

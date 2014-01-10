@@ -8,7 +8,7 @@
 
         <ui:composition template="layout.html">
             <ui:define name="myspecialcontent">
-                <p:fieldset legend="Ajout Avion">  
+                <p:fieldset legend="Ajout Avion : ">  
                     <h:panelGrid columns="3" cellpadding="20">  
                         <h:form>
                             <table id="tblAjoutAvion">
@@ -19,41 +19,37 @@
                                     <td rowspan="8" witdh="50px"></td>
 
                                     <td class="colMiddle"> 
-                                        <h:outputText value="Immatriculation :"/> 
+                                        <h:outputText value="Marque :"/> 
                                     </td> 
                                     <td> 
-                                    <p:inputText id="marqueAvion" required="true" requiredMessage="La Marque de l'aeronef est obligatoire" value="#{aeronef_beans.immat}" styleClass="ui-textinput"/>
-                                    <p:message for='marqueAvion' display="text"/>
+                                        <p:inputText id="marqueAvion"/> 
                                     </td> 
                                 </tr>
 
                                 <tr style="margin-left: 60px;"> 
                                     <td> 
-                                        <h:outputText value="Constructeur :"/> 
+                                        <h:outputText value="Modele :"/> 
                                     </td> 
                                     <td width="400px"> 
-                                        <p:inputText id="constructAvion" required="true" requiredMessage="Le Constructeur de l'aeronef est obligatoire" value="#{aeronef_beans.id_const}" styleClass="ui-textinput"/>
-                                        <p:message for='constructAvion' display="text"/>
+                                        <p:inputText id="modeleAvion"/> 
                                     </td> 
                                 </tr>
 
                                 <tr> 
                                     <td> 
-                                        <h:outputText value="Date de Construction :"/> 
+                                        <h:outputText value="Construction :"/> 
                                     </td> 
                                     <td> 
-                                    <p:inputMask mask="99/99/9999" id="dateConstAero" value="#{aeronef_beans.date_const}" styleClass="ui-textinput"/>
-                                    <p:message for='dateConstAero' display="text"/>
+                                        <p:inputMask id="constructionAvion" mask="99/99/9999"/> 
                                     </td>
                                 </tr>
 
                                 <tr> 
                                     <td> 
-                                        <h:outputText value="Numéro de Série :"/> 
+                                        <h:outputText value="Immatriculation :"/> 
                                     </td> 
-                                    <td width="400px"> 
-                                        <p:inputText id="numSerieAero" required="true" requiredMessage="Le numéro de série de l'aeronef est obligatoire" value="#{aeronef_beans.serial_nb}" styleClass="ui-textinput"/>
-                                        <p:message for='numSerieAero' display="text"/>
+                                    <td> 
+                                        <p:inputText id="immatriculationAvion"/> 
                                     </td> 
                                 </tr>
 
@@ -88,10 +84,10 @@
                                         <h:outputText value="Propriétaire :"/> 
                                     </td> 
 
-                                    <td> <h:selectOneMenu value="Propriétaire">  
-                                            <f:selectItem itemLabel="Mr Dupont" itemValue="mrdupont" />  
-                                            <f:selectItem itemLabel="Mr Richard" itemValue="mrRichard" />
-                                        </h:selectOneMenu>   
+                                    <td> 
+                                        <h:selectOneMenu id="proflst" value="#{proprio_beans.selectedProprioItem}"> 
+                                            <f:selectItems value="#{proprio_beans.listePropriosItem}" />
+                                        </h:selectOneMenu> 
                                     </td> 
                                 </tr>
                                 <tr> 

@@ -28,6 +28,8 @@ public class Beans_Fournisseur implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
+    
+    
     public String AddFournisseur() throws Exception {
 
         Fournisseur fourni = new Fournisseur();

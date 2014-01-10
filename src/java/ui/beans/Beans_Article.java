@@ -20,7 +20,7 @@ import javax.faces.context.FacesContext;
 @SessionScoped()
 public class Beans_Article implements Serializable{
 
-    private Article art;
+    private Article selectedArt;
     private int id_article;
     private String designation;
     private String part_nb_const;
@@ -68,15 +68,15 @@ public class Beans_Article implements Serializable{
     /**
      * @return the art
      */
-    public Article getArt() {
-        return art;
+    public Article getSelectedArt() {
+        return selectedArt;
     }
 
     /**
      * @param art the art to set
      */
-    public void setArt(Article art) {
-        this.art = art;
+    public void setSelectedArt(Article art) {
+        this.selectedArt = selectedArt;
     }
 
     /**

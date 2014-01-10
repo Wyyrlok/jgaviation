@@ -6,11 +6,13 @@ package ui.beans;
 
 import Metier.Constructeur;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -23,6 +25,19 @@ public class Beans_Constructeur implements Serializable {
     private Constructeur selectedConstruct;
     private int id_const;
     private String nom_const;
+    private String selectedConstrItem;
+    private List<SelectItem> listeConstrItem;
+    
+    
+    public Beans_Constructeur()
+    {
+        listeConstrItem = new ArrayList<SelectItem>();
+        List<Constructeur> proprioList = new DAO.DAO_Constructeur().GET_ALL();
+        for(Constructeur proprio: proprioList)
+        {
+            listeConstrItem.add(new SelectItem(proprio.getNom_const()));
+        }
+    }
 
     private void addMessage(FacesMessage message) {
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -87,5 +102,19 @@ public class Beans_Constructeur implements Serializable {
      */
     public void setNom_const(String nom_const) {
         this.nom_const = nom_const;
+    }
+
+    /**
+     * @return the selectedConstrItem
+     */
+    public String getSelectedConstrItem() {
+        return selectedConstrItem;
+    }
+
+    /**
+     * @param selectedConstrItem the selectedConstrItem to set
+     */
+    public void setSelectedConstrItem(String selectedConstrItem) {
+        this.selectedConstrItem = selectedConstrItem;
     }
 }
