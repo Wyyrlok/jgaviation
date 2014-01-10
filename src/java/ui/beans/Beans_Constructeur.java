@@ -25,20 +25,9 @@ public class Beans_Constructeur implements Serializable {
     private Constructeur selectedConstruct;
     private int id_const;
     private String nom_const;
-    private String selectedConstrItem;
-    private List<SelectItem> listeConstrItem;
-    
-    
-    public Beans_Constructeur()
-    {
-        listeConstrItem = new ArrayList<SelectItem>();
-        List<Constructeur> proprioList = new DAO.DAO_Constructeur().GET_ALL();
-        for(Constructeur proprio: proprioList)
-        {
-            listeConstrItem.add(new SelectItem(proprio.getNom_const()));
-        }
-    }
 
+    
+    
     private void addMessage(FacesMessage message) {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
@@ -104,17 +93,4 @@ public class Beans_Constructeur implements Serializable {
         this.nom_const = nom_const;
     }
 
-    /**
-     * @return the selectedConstrItem
-     */
-    public String getSelectedConstrItem() {
-        return selectedConstrItem;
-    }
-
-    /**
-     * @param selectedConstrItem the selectedConstrItem to set
-     */
-    public void setSelectedConstrItem(String selectedConstrItem) {
-        this.selectedConstrItem = selectedConstrItem;
-    }
 }

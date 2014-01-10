@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package Metier;
+import Metier.Constructeur;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Article {
     private boolean bPeremption;
     private boolean bSerialNb;
     private int stock_mini;
-
+    private Constructeur construct;
     /**
      * @return the id_article
      */
@@ -129,6 +130,20 @@ public class Article {
      */
     public void setStock_mini(int stock_mini) {
         this.stock_mini = stock_mini;
+    }
+
+    /**
+     * @return the construct
+     */
+    public Constructeur getConstruct() {
+        return construct;
+    }
+
+    /**
+     * @param construct the construct to set
+     */
+    public void setConstruct(Constructeur construct) {
+        this.construct = construct;
     }
 
    

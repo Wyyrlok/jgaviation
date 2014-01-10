@@ -62,7 +62,7 @@ public class DAO_Constructeur {
             {
                 Constructeur b = new Constructeur();
                 b.setId_const(rs.getInt("id_const"));
-                b.setNom_const(rs.getString("id_const"));
+                b.setNom_const(rs.getString("nom_const"));
                 
                 constructeur.add(b);
             }

@@ -5,6 +5,7 @@
 package DAO;
 
 import Metier.Article;
+import Metier.Constructeur;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -63,7 +64,7 @@ public class DAO_Article {
         {
             Class.forName(DBConnect.sDriver);
             con = DriverManager.getConnection(DBConnect.sCnx, DBConnect.sUser, DBConnect.sPwd);
-            String sql="SELECT * FROM article";
+            String sql="SELECT article.id_article, article.designation, article.part_nb_const, article.id_const, article.prix_vte_art, article.bPeremption, article.bSerialNb, article.stock_mini, constructeur.nom_const FROM article, constructeur WHERE article.id_const = constructeur.id_const";
             
             st=con.createStatement();
             rs=st.executeQuery(sql);
@@ -71,6 +72,9 @@ public class DAO_Article {
             while(rs.next())
             {
                 Article b = new Article();
+                Constructeur c = new Constructeur();
+                c.setId_const(rs.getInt("id_const"));
+                c.setNom_const(rs.getString("nom_const"));
                 b.setId_article(rs.getInt("id_article"));
                 b.setDesignation(rs.getString("designation"));
                 b.setPart_nb_const(rs.getString("part_nb_const"));
@@ -79,8 +83,9 @@ public class DAO_Article {
                 b.setbPeremption(rs.getBoolean("bPeremption"));
                 b.setbSerialNb(rs.getBoolean("bSerialNb"));
                 b.setStock_mini(rs.getInt("stock_mini"));
-                
+                b.setConstruct(c);
                 article.add(b);
+                
             }
             
             con.close();

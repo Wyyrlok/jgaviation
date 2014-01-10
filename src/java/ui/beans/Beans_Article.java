@@ -4,13 +4,17 @@
  */
 package ui.beans;
 
+import DAO.DAO_Article;
 import Metier.Article;
+import Metier.Constructeur;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -29,6 +33,33 @@ public class Beans_Article implements Serializable{
     private boolean bPeremption;
     private boolean bSerialNb;
     private int stock_mini;
+    
+    private List<SelectItem> listeArtItem;
+    private String selectedArtItem;
+    private String selectedConstrItem;
+    private List<SelectItem> listeConstrItem;
+
+
+    public Beans_Article()
+    {
+        listeArtItem = new ArrayList<SelectItem>();
+        List<Article> artList = new DAO.DAO_Article().GET_ALL();
+        for(Article article: artList)
+        {
+            listeArtItem.add(new SelectItem(article.getId_article(), article.getPart_nb_const()));
+        }
+        
+        listeConstrItem = new ArrayList<SelectItem>();
+        List<Constructeur> proprioList = new DAO.DAO_Constructeur().GET_ALL();
+        for(Constructeur constr: proprioList)
+        {
+            listeConstrItem.add(new SelectItem(constr.getId_const(), constr.getNom_const()));
+        }
+    }
+    
+    public List<Article> getList(){
+        return new DAO_Article().GET_ALL();
+    }
 
     private void addMessage(FacesMessage message)
     {
@@ -189,6 +220,48 @@ public class Beans_Article implements Serializable{
      */
     public void setId_article(int id_article) {
         this.id_article = id_article;
+    }
+
+    /**
+     * @return the selectedArtItem
+     */
+    public String getSelectedArtItem() {
+        return selectedArtItem;
+    }
+
+    /**
+     * @param selectedArtItem the selectedArtItem to set
+     */
+    public void setSelectedArtItem(String selectedArtItem) {
+        this.selectedArtItem = selectedArtItem;
+    }
+
+    /**
+     * @return the selectedConstrItem
+     */
+    public String getSelectedConstrItem() {
+        return selectedConstrItem;
+    }
+
+    /**
+     * @param selectedConstrItem the selectedConstrItem to set
+     */
+    public void setSelectedConstrItem(String selectedConstrItem) {
+        this.selectedConstrItem = selectedConstrItem;
+    }
+
+    /**
+     * @return the listeConstrItem
+     */
+    public List<SelectItem> getListeConstrItem() {
+        return listeConstrItem;
+    }
+
+    /**
+     * @param listeConstrItem the listeConstrItem to set
+     */
+    public void setListeConstrItem(List<SelectItem> listeConstrItem) {
+        this.listeConstrItem = listeConstrItem;
     }
     
    
