@@ -6,16 +6,22 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="layout.html">
+    <ui:composition template="layout.xhtml">
         <ui:define name="myspecialcontent">
             <p:fieldset legend="Article :">                 
                 <h:panelGrid columns="1" cellpadding="20">  
                     <h:form>
-                        <p:dataTable id="proprios" var="proprio" value="#{article.GET_LIST()}" style="width: 800px;margin-top: 96px;">  
+                        <p:dataTable id="proprios" var="article" value="#{article_beans.GET_LIST()}" style="width: 800px;margin-top: 96px;">  
 
-                            <p:column headerText="Désignation" style="width:30%">  
-                                <h:outputText value="#{article.getDesignation()}" />  
+                            <p:column headerText="Part Nb" style="width:30%">  
+                                <h:outputText value="#{article.part_nb_const}" />  
                             </p:column>  
+                            <p:column headerText="Désignation" style="width:30%">  
+                                <h:outputText value="#{article.getDesignation}" />  
+                            </p:column>  
+                            <p:column headerText="Constructeur" style="width:30%">  
+                                <h:outputText value="#{article.construct.nom_const}" />  
+                            </p:column>
                             
                             <p:column style="width:4%">  
                                 <p:commandButton id="selectButton" image="someCssClassName" title="Ouvrir">  

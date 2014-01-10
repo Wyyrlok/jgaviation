@@ -34,7 +34,7 @@
                             <tr> 
                                 <td></td>
                                 <td> 
-                            <h:outputText value="Part nb Constante :"/> 
+                            <h:outputText value="Part nb:"/> 
                             </td> 
                             <td width="400px"> 
                             <h:inputText id="partNbConst" required="true" requiredMessage="Le part nb const est obligatoire" value="#{article_beans.part_nb_const}" styleClass="ui-textinput" /> 
@@ -45,11 +45,12 @@
                             <tr> 
                                 <td></td>
                                 <td> 
-                            <h:outputText value="Id Constante :"/> 
+                            <h:outputText value="Constructeur :"/> 
                             </td> 
                             <td> 
-                            <h:inputText id="idConst" required="true" requiredMessage="L'Id const est obligatoire" value="#{article_beans.id_const}" styleClass="ui-textinput" /> 
-                            <p:message for="idConst" display="text" />
+                            <h:selectOneMenu id="constArt" value="#{article_beans.selectedConstrItem}"> 
+                                            <f:selectItems value="#{article_beans.listeConstrItem}" />
+                                        </h:selectOneMenu> 
                             </td> 
                             </tr>
 

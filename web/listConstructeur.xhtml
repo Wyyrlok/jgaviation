@@ -6,7 +6,7 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="layout.html">
+    <ui:composition template="layout.xhtml">
         <ui:define name="myspecialcontent">
             <p:fieldset legend="Constructeur :">                 
                 <h:panelGrid columns="1" cellpadding="20">  
@@ -16,7 +16,7 @@
                           
 
                             <p:column headerText="Nom Constructeur" style="width:100%">  
-                                <h:outputText value="#{construct.getNomConstr()}" />  
+                                <h:outputText value="#{constructeur.nom_const}" />  
                             </p:column>  
 
 
