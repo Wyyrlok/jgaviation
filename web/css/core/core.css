@@ -433,6 +433,7 @@ div#mws-navigation ul li
 {
 	margin:0;
 	list-style:none;
+        cursor:pointer;
 }
 
 div#mws-navigation ul
