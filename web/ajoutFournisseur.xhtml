@@ -6,43 +6,48 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 
-        <ui:composition template="layout.xhtml">
-            <ui:define name="myspecialcontent">
-                <p:fieldset legend="Ajout d'un nouveau fournisseur : " style="font-size: x-large;">  
-                    <h:panelGrid columns="3" cellpadding="20">  
-                        <h:form>
-                            <table id="tblAjoutAvion">
-                                <tr style="height: 20px;"></tr>
-                                <tr>
-                                    <td id="colImage" width="80px">
-                                        <p:graphicImage value="/images/Icon-user.png" width="100px" />
-                                    </td>
-                                    <td>
-                                        <table>
-                                            <tr> 
-                                                <td style="width: 30px;"></td>
-                                                <td style="width: 200px;"> 
-                                                    <h:outputText value="Nom Constructeur :"/> 
-                                                </td> 
-                                                <td width="400px"> 
-                                                    <h:inputText id="nomFourn" required="true" requiredMessage="Le Nom du Fournisseur est obligatoire" value="#{fourni_beans.nom_fourn}" styleClass="ui-textinput" /> 
-                                                    <p:message for="nomFourn" display="text" />    
-                                                </td> 
-                                            </tr>                                            
-                                            
-                                            <tr> 
-                                                <td></td>
-                                                <td colspan="2" id="cmdAjout">  
-                                                    <h:commandButton type="submit" value="Enregistrer" style="margin-top: 15px" action="#{fourni_beans.AddFournisseur}"></h:commandButton>
-                                                </td>  
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </h:form>
-                    </h:panelGrid>  
-                </p:fieldset>  
-            </ui:define>
-        </ui:composition>
+    <ui:composition template="layout.xhtml">
+        <ui:define name="myspecialcontent">
+            <p:fieldset legend="Ajout d'un nouveau fournisseur : " style="font-size: x-large;">  
+                <h:panelGrid columns="3" cellpadding="20">  
+                    <h:form>
+                        <table id="tblAjoutAvion">
+                            <tr style="height: 20px;"></tr>
+                            <tr>
+                                <td id="colImage" width="80px">
+                            <p:graphicImage value="/images/Icon-user.png" width="100px" />
+                            </td>
+                            <td>
+                                <table>
+                                    <tr> 
+                                        <td style="width: 30px;"></td>
+                                        <td style="width: 200px;"> 
+                                    <h:outputText value="Nom Constructeur :"/> 
+                            </td> 
+                            <td width="400px"> 
+                            <h:inputText id="nomFourn" required="true" requiredMessage="Le Nom du Fournisseur est obligatoire" value="#{fourni_beans.nom_fourn}" styleClass="ui-textinput" /> 
+                            <p:message for="nomFourn" display="text" />    
+                            </td> 
+                            </tr>                                            
+
+                            <tr> 
+                                <td></td>
+                                <td colspan="2" id="cmdAjout">  
+                            <h:commandButton type="submit" value="Enregistrer" style="margin-top: 15px" action="#{fourni_beans.AddFournisseur}"></h:commandButton>
+                            </td>  
+                            </tr>
+                        </table>
+                        </td>
+                        </tr>
+                        </table>
+                    </h:form>
+                </h:panelGrid>  
+            </p:fieldset> 
+
+            <script type="text/javascript">
+                document.getElementById('menu-donnees').className = '';
+            </script>
+
+        </ui:define>
+    </ui:composition>
 </html>
