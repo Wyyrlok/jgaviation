@@ -62,7 +62,7 @@ public class Beans_CN_Equipement implements Serializable{
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
     
-    public String AddProprio() throws Exception
+    public String AddCN_Equipement() throws Exception
     {
         CN_Equipement cn_Equip = new CN_Equipement();
         cn_Equip.setId_CN_Equipement(getId_CN_Equipement());

@@ -61,7 +61,7 @@ public class Beans_CN_Cel implements Serializable{
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
     
-    public String AddProprio() throws Exception
+    public String AddCN_Cel() throws Exception
     {
         CN_Cel cn_Cel = new CN_Cel();
         cn_Cel.setId_Cn_Cel(getId_Cn_Cel());

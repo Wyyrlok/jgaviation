@@ -20,7 +20,7 @@ import javax.faces.model.SelectItem;
  *
  * @author Valentin
  */
-@ManagedBean(name="cn_equip_beans")
+@ManagedBean(name="cn_helice_beans")
 @SessionScoped()
 public class Beans_CN_Helice implements Serializable{
     
@@ -60,7 +60,7 @@ public class Beans_CN_Helice implements Serializable{
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
     
-    public String AddProprio() throws Exception
+    public String AddCN_Helice() throws Exception
     {
         CN_Helice cn_Helice = new CN_Helice();
         cn_Helice.setId_CN_Helice(getId_CN_Helice());
@@ -81,7 +81,7 @@ public class Beans_CN_Helice implements Serializable{
         int add = new DAO.DAO_CN_Helice().CREATE(cn_Helice);
         if( add != 0 )
         {
-            addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Information : ", "Le CN de l'équipement a bien été ajouté!"));
+            addMessage(new FacesMessage(FacesMessage.SEVERITY_INFO, "Information : ", "Le CN de l'helice a bien été ajouté!"));
             return "listCn_Helice";
         }
         else
