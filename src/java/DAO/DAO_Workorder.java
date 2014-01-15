@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import Metier.Workorder;
+import Metier.WorkOrder;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class DAO_Workorder {
     
-    public int CREATE(Workorder workorder) throws Exception
+    public int CREATE(WorkOrder workorder) throws Exception
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -47,9 +47,9 @@ public class DAO_Workorder {
         return ret;
     }
     
-    public ArrayList<Workorder> GET_ALL()
+    public ArrayList<WorkOrder> GET_ALL()
     {
-        ArrayList<Workorder> workorder = new ArrayList<Workorder>();
+        ArrayList<WorkOrder> workorder = new ArrayList<WorkOrder>();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -65,7 +65,7 @@ public class DAO_Workorder {
             
             while(rs.next())
             {
-                Workorder b = new Workorder();
+                WorkOrder b = new WorkOrder();
                 b.setId_wo(rs.getInt("id_wo"));
                 b.setImmat(rs.getString("immat"));
                 b.setId_proprio(rs.getInt("id_proprio"));
@@ -83,9 +83,9 @@ public class DAO_Workorder {
         return workorder;
     }
 
-    public Workorder READ(int id_wo)
+    public WorkOrder READ(int id_wo)
     {
-        Workorder workorder = new Workorder();
+        WorkOrder workorder = new WorkOrder();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -119,7 +119,7 @@ public class DAO_Workorder {
         return workorder;
     }
     
-    public int UPDATE(Workorder workorder)
+    public int UPDATE(WorkOrder workorder)
     {
         int ret = 0;
         PreparedStatement ps = null;

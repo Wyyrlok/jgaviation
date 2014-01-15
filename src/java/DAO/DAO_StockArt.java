@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import Metier.Stockart;
+import Metier.StockArt;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class DAO_StockArt {
     
-    public int CREATE(Stockart stockart) throws Exception
+    public int CREATE(StockArt stockart) throws Exception
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -35,7 +35,7 @@ public class DAO_StockArt {
             ps.setInt(1,stockart.getId_Stockart());
             ps.setInt(2,stockart.getId_art());
             ps.setInt(3,stockart.getId_fourn());
-            ps.setInt(4,stockart.getId_qtt());
+            ps.setInt(4,stockart.getId_qt());
             ps.setDate(5,(Date)stockart.getDate_peremtion());
             ps.setString(6,stockart.getSerial_nb());
             ps.setString(7,stockart.getStockArtcol());
@@ -48,9 +48,9 @@ public class DAO_StockArt {
         return ret;
     }
     
-    public ArrayList<Stockart> GET_ALL()
+    public ArrayList<StockArt> GET_ALL()
     {
-        ArrayList<Stockart> stockart = new ArrayList<Stockart>();
+        ArrayList<StockArt> stockart = new ArrayList<StockArt>();
         
         Connection con = null; 
         ResultSet rs=null;
@@ -66,11 +66,11 @@ public class DAO_StockArt {
             
             while(rs.next())
             {
-                Stockart b = new Stockart();
+                StockArt b = new StockArt();
                 b.setId_Stockart(rs.getInt("id_StockArt"));
                 b.setId_art(rs.getInt("id_art"));
                 b.setId_fourn(rs.getInt("id_fourn"));
-                b.setId_qtt(rs.getInt("id_qtt"));
+                b.setId_qt(rs.getInt("id_qtt"));
                 b.setDate_peremtion(rs.getDate("date_peremption"));
                 b.setSerial_nb(rs.getString("serial_nb"));
                 b.setStockArtcol(rs.getString("StockArtcol"));
@@ -85,9 +85,9 @@ public class DAO_StockArt {
         return stockart;
     }
 
-    public Stockart READ(int id_StockArt)
+    public StockArt READ(int id_StockArt)
     {
-        Stockart stockart = new Stockart();
+        StockArt stockart = new StockArt();
         
         Connection con = null; 
         ResultSet rs=null;  
@@ -109,7 +109,7 @@ public class DAO_StockArt {
                 stockart.setId_Stockart(rs.getInt("id_StockArt"));
                 stockart.setId_art(rs.getInt("id_art"));
                 stockart.setId_fourn(rs.getInt("id_fourn"));
-                stockart.setId_qtt(rs.getInt("id_qtt"));
+                stockart.setId_qt(rs.getInt("id_qtt"));
                 stockart.setDate_peremtion(rs.getDate("date_peremption"));
                 stockart.setSerial_nb(rs.getString("serial_nb"));
                 stockart.setStockArtcol(rs.getString("StockArtcol"));
@@ -124,7 +124,7 @@ public class DAO_StockArt {
         return stockart;
     }
     
-    public int UPDATE(Stockart stockart)
+    public int UPDATE(StockArt stockart)
     {
         int ret = 0;
         PreparedStatement ps = null;
@@ -140,7 +140,7 @@ public class DAO_StockArt {
             ps.setInt(1,stockart.getId_Stockart());
             ps.setInt(2,stockart.getId_art());
             ps.setInt(3,stockart.getId_fourn());
-            ps.setInt(4,stockart.getId_qtt());
+            ps.setInt(4,stockart.getId_qt());
             ps.setDate(5,(Date)stockart.getDate_peremtion());
             ps.setString(6,stockart.getSerial_nb());
             ps.setString(7,stockart.getStockArtcol());
